@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Cast:Codable {
+struct Cast: Codable {
     var cast_id:Int?
     var character:String?
     var credit_id:String?
@@ -17,7 +17,7 @@ struct Cast:Codable {
     var id:Int?
     
 }
-struct Crew:Codable {
+struct Crew: Codable, Identifiable {
     var credit_id:String?
     var name:String?
     var department:String?
@@ -28,7 +28,7 @@ struct Crew:Codable {
 }
 
 
-struct Credits:Codable
+struct Credits: Codable
 {
     var id: Int?
     var cast:[Cast]?

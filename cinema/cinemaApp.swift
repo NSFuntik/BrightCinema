@@ -6,9 +6,16 @@
 //
 
 import SwiftUI
-
+import OpenAI
 @main
 struct cinemaApp: App {
+    
+    init() {
+       
+    
+       
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
