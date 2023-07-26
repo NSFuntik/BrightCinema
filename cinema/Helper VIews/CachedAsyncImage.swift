@@ -1,7 +1,3 @@
-//
-//  Created by Lorenzo Fiamingo on 04/11/20.
-//
-
 import SwiftUI
 
 /// A view that asynchronously loads, cache and displays an image.
@@ -386,7 +382,7 @@ private extension CachedAsyncImage {
 
 // MARK: - AsyncImageURLSession
 
-private class URLSessionTaskController: NSObject, URLSessionTaskDelegate {
+final class URLSessionTaskController: NSObject, URLSessionTaskDelegate {
     
     var metrics: URLSessionTaskMetrics?
     

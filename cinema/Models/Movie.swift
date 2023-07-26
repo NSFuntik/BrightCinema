@@ -1,12 +1,59 @@
-//
-//  Movie.swift
-//  Cinema Now
-//
-//  Created by Gina De La Rosa on 1/10/19.
-//  Copyright © 2019 Gina De La Rosa. All rights reserved.
-//
-
 import Foundation
+enum TVGenre: Int {
+    case ActionAdventure  =   10759
+    case Animation        =   16
+    case Comedy           =   35
+    case Crime            =   80
+    case Documentary      =   99
+    case Drama            =   18
+    case Family           =   10751
+    case Kids             =   10762
+    case Mystery          =   9648
+    case News             =   10763
+    case Reality          =   10764
+    case SciFiFantasy     =   10765
+    case Soap             =   10766
+    case Talk             =   10767
+    case WarPolitics      =   10768
+    case Western          =   37
+    
+    var list: String {
+        switch self {
+        case .ActionAdventure:
+            return "Action & Adventure"
+        case .Animation:
+            return "Animation"
+        case .Comedy:
+            return "Comedy"
+        case .Crime:
+            return "Crime"
+        case .Documentary:
+            return "Documentary"
+        case .Drama:
+            return "Drama"
+        case .Family:
+            return "Family"
+        case .Kids:
+            return "Kids"
+        case .Mystery:
+            return "Mystery"
+        case .News:
+            return "News"
+        case .Reality:
+            return "Reality"
+        case .SciFiFantasy:
+            return "Sci-Fi & Fantasy"
+        case .Soap:
+            return "Soap"
+        case .Talk:
+            return "Talk"
+        case .WarPolitics:
+            return "War & Politics"
+        case .Western:
+            return "Western"
+        }
+    }
+}
 
 enum Genre: Int {
     case action = 28
@@ -56,6 +103,7 @@ enum Genre: Int {
 }
 
 struct Movie: Codable, Hashable, Identifiable {
+    let id: Int?
     
     var profile_path: String?
     var poster_path: String?
@@ -69,7 +117,6 @@ struct Movie: Codable, Hashable, Identifiable {
     let video: Bool?
     var runtime: Int?
     
-    let id: Int?
     let genre_ids: [Int]?
     let popularity: Double?
     var vote_average: Double?

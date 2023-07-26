@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-class QuizViewModel: ObservableObject {
+final class QuizViewModel: ObservableObject {
     @Published var quiz: Quiz
     @Published var selectedOptions: [String?]
     @Published var quizScore: QuizScore?

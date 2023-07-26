@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import SwiftUIBackports
 struct RatingReviewView: View {
     @StateObject var rrVM: RatingReviewViewModel
     
@@ -20,16 +20,17 @@ struct RatingReviewView: View {
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
-            
-            HStack {
-                Text("Tap to Rate:")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                Spacer()
-                RatingView(rating: $rrVM.selectedRating)
-                    .onChange(of: rrVM.selectedRating, perform: { _ in
-                        isReviewWriting = true
-                    })
+            if rrVM.reviewsStatus != "You have to sign in to see reviews." {
+                HStack {
+                    Text("Tap to Rate:")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    RatingView(rating: $rrVM.selectedRating)
+                        .onChange(of: rrVM.selectedRating, perform: { _ in
+                            isReviewWriting = true
+                        })
+                }
             }
             if rrVM.reviews.isEmpty {
                 Text(rrVM.reviewsStatus)
@@ -102,83 +103,60 @@ struct RatingReviewView: View {
             }
         }
         .sheet(isPresented: $isReviewWriting, content: {
-            if #available(iOS 16.0, *) {
-                VStack(alignment: .center, spacing: 15) {
-                    Text("Review")
-                        .font(.system(size: 23, weight: .semibold, design: .rounded))
-                        .padding(.bottom, 10)
-                    
-                    RatingView(rating: $rrVM.selectedRating).scaleEffect(1.2)
-                    VStack {
+            VStack(alignment: .center, spacing: 15) {
+                Text("Review")
+                    .font(.system(size: 23, weight: .semibold, design: .rounded))
+                    .padding(.bottom, 10)
+                
+                RatingView(rating: $rrVM.selectedRating).scaleEffect(1.2)
+                VStack {
+                    if #available(iOS 16.0, *) {
                         TextField("Share your opinion!", text: $rrVM.writtenReview, prompt: nil, axis: .vertical)
                             .font(.system(size: 18, weight: .regular, design: .rounded))
                             .multilineTextAlignment(.leading)
                             .padding(10)
-                            .scrollDismissesKeyboard(.immediately)
+                            .backport.scrollDismissesKeyboard(.immediately)
                             .onSubmit {
                                 UIApplication.shared.endEditing()
                             }
-                        Spacer()
-                    }
-                    .background {
-                        RoundedRectangle(cornerRadius: 13).fill(Color.secondary.opacity(0.2))
-                    }
-                    Spacer()
-                    if !rrVM.writtenReview.isEmpty {
-                        Button(action: {
-                            Task {
-                                await rrVM.submitReview()
-                                isReviewWriting = false
-                            }
-                        }, label: {
-                            Text("Submit review").foregroundColor(.white)
-                                .font(.system(size: 20, weight: .semibold, design: .rounded))
-                                .padding(10)
-                                .padding(.horizontal, 20)
-                                .background {
-                                    RoundedRectangle(cornerRadius: 13).fill(Color("AccentColor"))
-                                }
-                        })
-                    }
-                }.padding(20).presentationDetents([.medium])
-                
-                
-            } else {
-                VStack(alignment: .center, spacing: 15) {
-                    Text("Review")
-                        .font(.system(size: 23, weight: .semibold, design: .rounded))
-                        .padding(.bottom, 10)
-                    
-                    RatingView(rating: $rrVM.selectedRating).scaleEffect(1.2)
-                    VStack {
-                        TextField("Share your opinion!", text: $rrVM.writtenReview)
+                    } else {
+                        TextField("Share your opinion!", text: $rrVM.writtenReview, prompt: nil)
                             .font(.system(size: 18, weight: .regular, design: .rounded))
                             .multilineTextAlignment(.leading)
                             .padding(10)
-                        Spacer()
-                    }
-                    .background {
-                        RoundedRectangle(cornerRadius: 13).fill(Color.secondary.opacity(0.2))
+                            .backport.scrollDismissesKeyboard(.immediately)
+                            .onSubmit {
+                                UIApplication.shared.endEditing()
+                            }
                     }
                     Spacer()
-                    if !rrVM.writtenReview.isEmpty {
-                        Button(action: {
-                            Task {
-                                await rrVM.submitReview()
-                                isReviewWriting = false
+                }
+                .background {
+                    RoundedRectangle(cornerRadius: 13).fill(Color.secondary.opacity(0.2))
+                }
+                Spacer()
+                if !rrVM.writtenReview.isEmpty {
+                    Button(action: {
+                        Task {
+                            await rrVM.submitReview()
+                            isReviewWriting = false
+                        }
+                    }, label: {
+                        Text("Submit review").foregroundColor(.white)
+                            .font(.system(size: 20, weight: .semibold, design: .rounded))
+                            .padding(10)
+                            .padding(.horizontal, 20)
+                            .background {
+                                RoundedRectangle(cornerRadius: 13).fill(Color("AccentColor"))
                             }
-                        }, label: {
-                            Text("Submit review").foregroundColor(.white)
-                                .font(.system(size: 20, weight: .semibold, design: .rounded))
-                                .padding(10)
-                                .padding(.horizontal, 20)
-                                .background {
-                                    RoundedRectangle(cornerRadius: 13).fill(Color("AccentColor"))
-                                }
-                        })
-                    }
-                }.padding(20)
+                    })
+                }
             }
+            .backport.presentationDetents([.medium])
+            .padding(20)
+            
+            
+            
         })
     }
     private struct RatingView: View {

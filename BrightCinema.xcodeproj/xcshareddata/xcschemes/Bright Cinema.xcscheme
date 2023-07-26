@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F5BA47C62A40515100A8682F"
-               BuildableName = "cinema.app"
-               BlueprintName = "cinema"
-               ReferencedContainer = "container:cinema.xcodeproj">
+               BuildableName = "BrightCinema.app"
+               BlueprintName = "BrightCinema"
+               ReferencedContainer = "container:BrightCinema.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,9 +44,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F5BA47C62A40515100A8682F"
-            BuildableName = "cinema.app"
-            BlueprintName = "cinema"
-            ReferencedContainer = "container:cinema.xcodeproj">
+            BuildableName = "BrightCinema.app"
+            BlueprintName = "BrightCinema"
+            ReferencedContainer = "container:BrightCinema.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -61,9 +61,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F5BA47C62A40515100A8682F"
-            BuildableName = "cinema.app"
-            BlueprintName = "cinema"
-            ReferencedContainer = "container:cinema.xcodeproj">
+            BuildableName = "BrightCinema.app"
+            BlueprintName = "BrightCinema"
+            ReferencedContainer = "container:BrightCinema.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

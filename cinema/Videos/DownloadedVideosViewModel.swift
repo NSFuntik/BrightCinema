@@ -1,22 +1,25 @@
 //
-//  DownloadedVideosViewModel\.swift
+//  DownloadedVideosViewModel.swift
 //  BrightCinema
 //
 //  Created by NSFuntik on 26.07.2023.
 //
 
-import Foundation
-
+import AVKit
+import SwiftUI
 final class DownloadedVideosViewModel: ObservableObject {
     @Published var videos: [AVPlayerItem] = []
-    @ObservedObject var downloadManager: DownloadManager
+    @StateObject var downloader = DownloadManager()
     
-    init(downloadManager: DownloadManager) {
-        self.downloadManager = downloadManager
-        let paths = UserDefaults.standard.stringArray(forKey: "downloadedFiles")
-        paths.map { path in
-            videos.append(downloadManager.getVideoFileAsset(with: path))
+    init() {
+        let paths = UserDefaults.standard.stringArray(forKey: "downloadedFiles") ?? []
+        debugPrint(paths)
+        for path in paths {
+            if let asset = downloader.getVideoFileAsset(with: path) {
+                videos.append(asset)
+            }
         }
+        debugPrint(videos)
         
     }
     

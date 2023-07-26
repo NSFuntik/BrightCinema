@@ -8,6 +8,7 @@ import AVFoundation
 @available(macOS 13.0, *)
 extension View {
     /// Creates a `CMSampleBuffer` containing the rendered view.
+    @available(iOS 16.0, *)
     func makeBuffer(renderer: ImageRenderer<some View>) async throws -> CMSampleBuffer {
         // Pixel Buffer
         var buffer: CVPixelBuffer?

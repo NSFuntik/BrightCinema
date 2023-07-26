@@ -12,8 +12,10 @@ struct ActorDetailView: View {
     var body: some View {
         VStack {
             if let profile_path = $actorDetailVM.actor.wrappedValue.profile_path {
-                AsyncImage(
-                    url: URL(string: ImageKeys.IMAGE_BASE_URL)!.appendingPathComponent(ImageKeys.PosterSizes.DETAIL_POSTER).appendingPathComponent(profile_path),
+               CachedAsyncImage(
+                    url: URL(string: ImageKeys.IMAGE_BASE_URL)!
+                        .appendingPathComponent(ImageKeys.PosterSizes.DETAIL_POSTER)
+                        .appendingPathComponent(profile_path),
                     content: {
                         $0
                             .resizable()
@@ -22,7 +24,6 @@ struct ActorDetailView: View {
                     },
                     placeholder: { LoaderView(tintColor: Color("AccentColor")).frame(height: UIScreen.main.bounds.height / 2.5) }
                 )
-                
                 .scaledToFill()
                 .cornerRadius(0)
             }
@@ -39,7 +40,6 @@ struct ActorDetailView: View {
                             .foregroundColor(Color.white)
                             .padding(.bottom, 5)
                             .padding(.leading, 10)
-                        
                     }
                 }
                 Spacer()
@@ -50,10 +50,15 @@ struct ActorDetailView: View {
                         ForEach($actorDetailVM.actorCast, id: \.id) { $cast in
                             if let posterPath = cast.poster_path {
                                 NavigationLink {
-                                    TVPageDetailView(detailVM: TVPageDetailViewModel(client: actorDetailVM.client, movie: Movie(title: nil, backdrop_path: nil, poster: nil, overview: nil, release_date: nil, video: nil, id: cast.id, genre_ids: nil, popularity: nil, first_air_date: nil, name: nil), isTV: false))
+                                    TVPageDetailView(detailVM: TVPageDetailViewModel(client: actorDetailVM.client,
+                                                                                     movie: Movie(id: cast.id,
+                                                                                                  title: nil, backdrop_path: nil, poster: nil, overview: nil, release_date: nil, video: nil, genre_ids: nil, popularity: nil, first_air_date: nil, name: nil),
+                                                                                     isTV: false))
                                 } label: {
-                                    AsyncImage(
-                                        url: URL(string: ImageKeys.IMAGE_BASE_URL)!.appendingPathComponent(ImageKeys.PosterSizes.DETAIL_POSTER).appendingPathComponent(posterPath),
+                                   CachedAsyncImage(
+                                        url: URL(string: ImageKeys.IMAGE_BASE_URL)!
+                                            .appendingPathComponent(ImageKeys.PosterSizes.DETAIL_POSTER)
+                                            .appendingPathComponent(posterPath),
                                         content: {
                                             $0
                                                 .resizable()
@@ -64,7 +69,6 @@ struct ActorDetailView: View {
                                         },
                                         placeholder: { LoaderView(tintColor: Color("AccentColor")) })
                                 }
-                                
                             }
                         }
                     }
@@ -76,9 +80,7 @@ struct ActorDetailView: View {
                             .font(.system(size: 17, weight: .bold, design: .rounded))
                             .foregroundColor(Color.accentColor)
                             .padding(.leading, 5)
-                        
                         Spacer()
-                        
                     }.padding(.bottom, -5)
                     Divider().background(Color("AccentColor"))
                 }.padding(.bottom, -5)
@@ -89,7 +91,6 @@ struct ActorDetailView: View {
                         .font(.system(size: 15, weight: .light, design: .rounded))
                         .multilineTextAlignment(.leading)
                         .foregroundColor(Color.white)
-                    
                 }.padding(.horizontal, 5)
             } header: {
                 VStack {
@@ -104,10 +105,8 @@ struct ActorDetailView: View {
                     Divider().background(Color("AccentColor"))
                 }.padding(.bottom, -5)
             }
-            
-            
             Spacer()
-        }.ignoresSafeArea(.all)//.background(Color("Blue"))
+        }.ignoresSafeArea(.all)
     }
 }
 

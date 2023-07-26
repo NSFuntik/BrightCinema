@@ -13,9 +13,26 @@ enum NetworkError: Error {
 
     /// `URLResponse` is not `HTTPURLResponse` or empty.
     case invalidResponse
-
+    
+    /// Status code is `= 401`.
+    case invalidCredentials
+    
     /// Status code is `≥ 400`.
     case httpError(HTTPURLResponse)
+    
+    var desctiption: String {
+        switch self {
+        case .urlError(let uRLError):
+            return "Bad URL! \(uRLError.localizedDescription)"
+        case .invalidResponse:
+            return "Bad responce from server! Please try again later"
+        case .invalidCredentials:
+            return "Wrong or expired credentials! Please log in again"
+        case .httpError(let hTTPURLResponse):
+            return "\(hTTPURLResponse.description)"
+        }
+    }
+    
 }
 
 private let retryAfterHeaderKey = "Retry-After"

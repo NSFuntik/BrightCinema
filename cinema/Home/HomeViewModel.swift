@@ -9,15 +9,15 @@ import SwiftUI
 import Combine
 
 
-class HomeViewModel: ObservableObject {
+final class HomeViewModel: ObservableObject {
     let client = Service()
-    var cancelRequest: Bool = false
+    private var cancelRequest: Bool = false
     @Published var upcomingMovies: [Movie] = []
     @Published var celebritiesMovies: [Movie] = []
     @Published var nowPlayingMovies: [Movie] = []
     @Published var trendingMovies: [Movie] = []
     @Published var popularMovies: [Movie] = []
-
+    
     init() {
         loadUpcomingData()
         loadCelebrities()
@@ -30,7 +30,7 @@ class HomeViewModel: ObservableObject {
         guard !cancelRequest else { return }
         let _ = client.taskForGETMethod(Methods.TOP_RATED, parameters: [ParameterKeys.TOTAL_RESULTS: page as AnyObject]) { (data, error) in
             if error == nil, let jsonData = data {
-
+                
                 let result = MovieResults.decode(jsonData: jsonData)
                 if let movieResults = result?.results {
                     
@@ -42,20 +42,17 @@ class HomeViewModel: ObservableObject {
                     guard !self.cancelRequest else {
                         print("Cancel Request Failed")
                         return
-
                     }
                     self.loadPopularData(onPage: page + 1)
                 }
             } else if let error = error, let retry = error.userInfo["Retry-After"] as? Int {
                 print("Retry after: \(retry) seconds")
-                DispatchQueue.main.async {
-                    Timer.scheduledTimer(withTimeInterval: Double(retry), repeats: false, block: { (_) in
-                        print("Retrying...")
-                        guard !self.cancelRequest else { return }
-                        self.loadPopularData(onPage: page)
-                        return
-                    })
-                }
+                Timer.scheduledTimer(withTimeInterval: Double(retry), repeats: false, block: { (_) in
+                    print("Retrying...")
+                    guard !self.cancelRequest else { return }
+                    self.loadPopularData(onPage: page)
+                    return
+                })
             } else {
                 print("Error code: \(String(describing: error?.code))")
                 print("There was an error: \(String(describing: error?.userInfo))")
@@ -88,9 +85,9 @@ class HomeViewModel: ObservableObject {
                 }
             } else if let error = error, let retry = error.userInfo["Retry-After"] as? Int {
                 print("Retry after: \(retry) seconds")
-                DispatchQueue.main.async {
+                Timer.scheduledTimer(withTimeInterval: Double(retry), repeats: false, block: { (_) in
                     self.loadUpcomingData(onPage: page)
-                }
+                })
             } else {
                 print("Error code: \(String(describing: error?.code))")
                 print("There was an error: \(String(describing: error?.userInfo))")
@@ -122,15 +119,12 @@ class HomeViewModel: ObservableObject {
                 }
             } else if let error = error, let retry = error.userInfo["Retry-After"] as? Int {
                 print("Retry after: \(retry) seconds")
-                DispatchQueue.main.async {
-                    Timer.scheduledTimer(withTimeInterval: Double(20), repeats: false, block: { (_) in
-                        print("Retrying...")
-                        guard !self.cancelRequest else { return }
-                        self.loadCelebrities(onPage: 1)
-                        return
-                    })
-                   
-                }
+                Timer.scheduledTimer(withTimeInterval: Double(retry), repeats: false, block: { (_) in
+                    print("Retrying...")
+                    guard !self.cancelRequest else { return }
+                    self.loadCelebrities(onPage: 1)
+                    return
+                })
             } else {
                 print("Error code: \(String(describing: error?.code))")
                 print("There was an error: \(String(describing: error?.userInfo))")
@@ -152,7 +146,7 @@ class HomeViewModel: ObservableObject {
                     guard !self.cancelRequest else {
                         print("Cancel Request Failed")
                         return
-
+                        
                     }
                     self.loadNowPlayingData(onPage: page + 1)
                 }
@@ -160,14 +154,12 @@ class HomeViewModel: ObservableObject {
                 
             } else if let error = error, let retry = error.userInfo["Retry-After"] as? Int {
                 print("Retry after: \(retry) seconds")
-                DispatchQueue.main.async {
-                    Timer.scheduledTimer(withTimeInterval: Double(20), repeats: false, block: { (_) in
-                        print("Retrying...")
-                        guard !self.cancelRequest else { return }
-                        self.loadNowPlayingData(onPage: page)
-                        return
-                    })
-                }
+                Timer.scheduledTimer(withTimeInterval: Double(retry), repeats: false, block: { (_) in
+                    print("Retrying...")
+                    guard !self.cancelRequest else { return }
+                    self.loadNowPlayingData(onPage: page)
+                    return
+                })
             } else {
                 print("Error code: \(String(describing: error?.code))")
                 print("There was an error: \(String(describing: error?.userInfo))")
@@ -196,14 +188,12 @@ class HomeViewModel: ObservableObject {
                 }
             } else if let error = error, let retry = error.userInfo["Retry-After"] as? Int {
                 print("Retry after: \(retry) seconds")
-                DispatchQueue.main.async {
-                    Timer.scheduledTimer(withTimeInterval: Double(20), repeats: false, block: { (_) in
-                        print("Retrying...")
-                        guard !self.cancelRequest else { return }
-                        self.loadTrendingData(onPage: page)
-                        return
-                    })
-                }
+                Timer.scheduledTimer(withTimeInterval: Double(retry), repeats: false, block: { (_) in
+                    print("Retrying...")
+                    guard !self.cancelRequest else { return }
+                    self.loadTrendingData(onPage: page)
+                    return
+                })
             } else {
                 print("Error code: \(String(describing: error?.code))")
                 print("There was an error: \(String(describing: error?.userInfo))")

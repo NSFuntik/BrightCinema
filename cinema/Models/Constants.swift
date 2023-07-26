@@ -1,11 +1,3 @@
-//
-//  Constants.swift
-//  Cinema Now
-//
-//  Created by Gina De La Rosa on 1/10/19.
-//  Copyright © 2019 Gina De La Rosa. All rights reserved.
-//
-
 import Foundation
 
 var posterSizes = ["w92", "w154", "w185", "w342", "w500", "w780", "w1280", "original"]
@@ -13,12 +5,16 @@ var trailerQualitySettings: [String] = []
 var person_id: Int?
 
 struct Api {
-    static let BASE_URL = "https://api.themoviedb.org/3"
+    static let LOGIN_URL = "https://cinemaraids.com/"
+
+    static let BASE_URL = "https://cinemaraids.com/api/3"
     static let KEY = "5042406e2d9a46f8e330a6b89e997af4"
     static let SCHEME = "https"
-    static let HOST = "api.themoviedb.org"
-    static let PATH = "/3"
-    
+    static let HOST = "cinemaraids.com"
+    static let PATH = "/api/3"
+    static let REGISTER = "/auth/register"
+    static let LOGIN = "/auth/login"
+
     
     static let youtubeThumb = "https://img.youtube.com/vi/"
     static let youtubeLink = "https://www.youtube.com/watch?v="
@@ -35,7 +31,7 @@ struct ParameterKeys {
 }
 
 struct ImageKeys {
-    static let IMAGE_BASE_URL = "https://image.tmdb.org/t/p/"
+    static let IMAGE_BASE_URL = "https://cinemaraids.com/image"
     
     struct PosterSizes {
         static let BACK_DROP = posterSizes[6]
@@ -52,6 +48,8 @@ struct Methods {
     static let TOP_RATED = "/movie/top_rated"
     static let POPULAR_ACTORS = "/person/popular"
     static let TRENDING_TV = "/trending/tv/week"
+    static let REGISTER = "/register"
+    static let LOGIN = "/login"
 }
 
 

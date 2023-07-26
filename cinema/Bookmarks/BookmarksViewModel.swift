@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BookmarksViewModel: ObservableObject {
+final class BookmarksViewModel: ObservableObject {
     @Published var bookmarks = UserDefaults.standard.array(forKey: "Bookmarks") as? [Int] ?? [Int]()
     @Published var movies: [Movie] = []
     let client = Service()

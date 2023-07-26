@@ -84,25 +84,35 @@ public final class PipifyController: NSObject, ObservableObject, AVPictureInPict
         pipController?.delegate = self
     }
     
+    @available(iOS 16.0, *)
     @MainActor func setView(_ view: some View, maximumUpdatesPerSecond: Double = 30) {
         let modifiedView = view.environmentObject(self)
-        let renderer = ImageRenderer(content: modifiedView)
+        let renderer =  ImageRenderer(content: modifiedView)
         
         renderer
             .objectWillChange
             // limit the number of times we redraw per second (performance)
             .throttle(for: .init(1.0 / maximumUpdatesPerSecond), scheduler: RunLoop.main, latest: true)
             .sink { [weak self] _ in
-                self?.render(view: modifiedView, using: renderer)
+                if #available(iOS 16.0, *) {
+                    self?.render(view: modifiedView, using: renderer)
+                } else {
+                    // Fallback on earlier versions
+                }
             }
             .store(in: &rendererSubscriptions)
         
         // first draw
-        render(view: modifiedView, using: renderer)
+        if #available(iOS 16.0, *) {
+            render(view: modifiedView, using: renderer)
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     // MARK: - Rendering
     
+    @available(iOS 16.0, *)
     private func render(view: some View, using renderer: ImageRenderer<some View>) {
         Task {
             do {

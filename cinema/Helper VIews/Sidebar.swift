@@ -9,7 +9,7 @@ import SwiftUI
 import StoreKit
 
 enum Tab: Int {
-    case highlights = 4001, main = 4002, search = 4003, bookmarks = 4004
+    case signIn = 4000,  highlights = 4001, main = 4002, search = 4003, bookmarks = 4004, videos = 4005
 }
 struct MenuItemBadge: Identifiable {
     var id: Tab
@@ -18,10 +18,12 @@ struct MenuItemBadge: Identifiable {
 }
 
 var userActions: [MenuItemBadge] = [
+    MenuItemBadge(id: Tab.signIn, icon: "signin", text: "Sign In"),
     MenuItemBadge(id: Tab.highlights, icon: "TV", text: "Weekly highlights"),
     MenuItemBadge(id: .main, icon: "logo", text: "Movies"),
     MenuItemBadge(id: .search, icon: "search", text: "Search"),
-    MenuItemBadge(id: .bookmarks, icon: "bookmark", text: "Bookmarks")
+    MenuItemBadge(id: .bookmarks, icon: "bookmark", text: "Bookmarks"),
+    MenuItemBadge(id: .videos, icon: "videos", text: "Videos")
 ]
 
 

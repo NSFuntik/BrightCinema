@@ -9,6 +9,9 @@ import SwiftUI
 
 struct BookmarksView: View {
     @StateObject var bookmarksVM = BookmarksViewModel()
+    @State private var movieTitles: [String] = ["Hey! That's my watch list!"]
+    @State private var isShareSheetPresented = false
+    @State private var activityItems: [Any] = []
     var body: some View {
         VStack {
             Spacer()
@@ -25,13 +28,15 @@ struct BookmarksView: View {
                             TVPageDetailView(detailVM: TVPageDetailViewModel(client: bookmarksVM.client, movie: movie))
                         } label: {
                             HStack(alignment: .top, spacing: 5) {
-                                AsyncImage(url: URL(string: ImageKeys.IMAGE_BASE_URL)!.appendingPathComponent(ImageKeys.PosterSizes.ORIGINAL_POSTER).appendingPathComponent(posterPath)) {
-                                    $0.resizable()
-                                        .scaledToFill()
-                                        .frame(width: 75, height: 100, alignment: .center)
-                                } placeholder: {
-                                    LoaderView(tintColor: Color("AccentColor"))
-                                }
+                                CachedAsyncImage(url: URL(string: ImageKeys.IMAGE_BASE_URL)!
+                                    .appendingPathComponent(ImageKeys.PosterSizes.ORIGINAL_POSTER)
+                                    .appendingPathComponent(posterPath)) {
+                                        $0.resizable()
+                                            .scaledToFill()
+                                            .frame(width: 75, height: 100, alignment: .center)
+                                    } placeholder: {
+                                        LoaderView(tintColor: Color("AccentColor"))
+                                    }
                                 VStack(alignment: .leading, spacing: 10) {
                                     Text("\(movie.title ?? movie.name ?? "")")
                                         .font(.system(size: 17, weight: .semibold, design: .serif))
@@ -51,7 +56,44 @@ struct BookmarksView: View {
                 }
             }
             .listStyle(.grouped)
+        }.toolbar{
+            if #available(iOS 16.0, *) {
+                ShareLink(item: movieTitles.joined(separator: "\n ✔︎ "))
+                    .task {
+                        movieTitles = self.bookmarksVM.movies.compactMap {
+                            return $0.title
+                        }
+                        movieTitles.insert("Hey! Check out my watchlist!", at: 0)
+                    }
+            }
+
+
+//            Button(action: {
+//                defer {
+//                    isShareSheetPresented = true
+//                }
+//                
+//                activityItems.append()
+//            }, label: {
+//                Image(systemName: "square.and.arrow.up.fill")
+//            })
+        }
+        .sheet(isPresented: $isShareSheetPresented) {
+            var items = activityItems
+            ActivityViewController(activityItems: items)
         }
     }
 }
 
+struct ActivityViewController: UIViewControllerRepresentable {
+    var activityItems: [Any]
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        return activityViewController
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        
+    }
+}

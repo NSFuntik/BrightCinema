@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F50580312A70186F00844D20 /* View+Changes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F505802B2A70186E00844D20 /* View+Changes.swift */; };
+		F50580322A70186F00844D20 /* View+Pipify.swift in Sources */ = {isa = PBXBuildFile; fileRef = F505802C2A70186F00844D20 /* View+Pipify.swift */; };
+		F50580332A70186F00844D20 /* PipifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F505802D2A70186F00844D20 /* PipifyController.swift */; };
+		F50580342A70186F00844D20 /* LayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F505802E2A70186F00844D20 /* LayerView.swift */; };
+		F50580352A70186F00844D20 /* View+Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F505802F2A70186F00844D20 /* View+Buffer.swift */; };
+		F50580362A70186F00844D20 /* PipifyViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50580302A70186F00844D20 /* PipifyViewModifier.swift */; };
 		F50DA7B72A447474003E361B /* SearchMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50DA7B62A447474003E361B /* SearchMovieView.swift */; };
 		F55ACD742A4C5DFD00FC61EC /* TVPageDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55ACD732A4C5DFD00FC61EC /* TVPageDetailViewModel.swift */; };
 		F55ACD772A4C5EC100FC61EC /* TVPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55ACD762A4C5EC100FC61EC /* TVPageViewModel.swift */; };
@@ -26,9 +32,19 @@
 		F56D94742A4EE0EE004A1B9E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = F56D94732A4EE0EE004A1B9E /* FacebookLogin */; };
 		F56D94762A4EE0EE004A1B9E /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = F56D94752A4EE0EE004A1B9E /* FacebookShare */; };
 		F56D94782A4EE222004A1B9E /* brightcinema_privacypolicy.html in Resources */ = {isa = PBXBuildFile; fileRef = F56D94772A4EE222004A1B9E /* brightcinema_privacypolicy.html */; };
+		F57EE5B82A5EAF11007D7524 /* RatingReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57EE5B72A5EAF11007D7524 /* RatingReviewViewModel.swift */; };
+		F57EE5BC2A5EAFA5007D7524 /* SwiftUIBackports in Frameworks */ = {isa = PBXBuildFile; productRef = F57EE5BB2A5EAFA5007D7524 /* SwiftUIBackports */; };
+		F593A3DB2A712B1700C5F1D6 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593A3DA2A712B1700C5F1D6 /* DownloadManager.swift */; };
+		F593A3DD2A712E3F00C5F1D6 /* DownloadedVideosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F593A3DC2A712E3F00C5F1D6 /* DownloadedVideosView.swift */; };
+		F593D68D2A585681004A72F8 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = F593D68C2A585681004A72F8 /* KeychainAccess */; };
+		F59675D72A713D1800D55CEF /* DownloadedVideosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59675D62A713D1800D55CEF /* DownloadedVideosViewModel.swift */; };
+		F59C625E2A5C4462007BFC71 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59C625D2A5C4462007BFC71 /* User.swift */; };
 		F59D0C432A4B1F6800C31BC5 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = F59D0C422A4B1F6800C31BC5 /* OpenAI */; };
 		F59D0C452A4B337200C31BC5 /* MovieQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D0C442A4B337200C31BC5 /* MovieQuizView.swift */; };
 		F59D0C472A4B3B1F00C31BC5 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D0C462A4B3B1F00C31BC5 /* Quiz.swift */; };
+		F5B7DBAB2A6FCA2A003E0F10 /* VideosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B7DBAA2A6FCA2A003E0F10 /* VideosView.swift */; };
+		F5B7DBAD2A6FCA3E003E0F10 /* VideosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B7DBAC2A6FCA3E003E0F10 /* VideosViewModel.swift */; };
+		F5B7DBAF2A6FDFDA003E0F10 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B7DBAE2A6FDFDA003E0F10 /* Video.swift */; };
 		F5BA47CB2A40515100A8682F /* cinemaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BA47CA2A40515100A8682F /* cinemaApp.swift */; };
 		F5BA47CD2A40515100A8682F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BA47CC2A40515100A8682F /* ContentView.swift */; };
 		F5BA47CF2A40515200A8682F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5BA47CE2A40515200A8682F /* Assets.xcassets */; };
@@ -44,9 +60,6 @@
 		F5BA47EC2A408ADE00A8682F /* TVPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BA47EB2A408ADE00A8682F /* TVPageView.swift */; };
 		F5BA47EE2A408CF100A8682F /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BA47ED2A408CF100A8682F /* LoaderView.swift */; };
 		F5BA47F02A4099C800A8682F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BA47EF2A4099C800A8682F /* NetworkError.swift */; };
-		F5BA47F42A409B6B00A8682F /* EnvironmentValues+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BA47F12A409B6B00A8682F /* EnvironmentValues+ImageCache.swift */; };
-		F5BA47F52A409B6B00A8682F /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BA47F22A409B6B00A8682F /* ImageLoader.swift */; };
-		F5BA47F62A409B6B00A8682F /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BA47F32A409B6B00A8682F /* ImageCache.swift */; };
 		F5BA47F92A40A15B00A8682F /* TVPageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BA47F82A40A15B00A8682F /* TVPageDetailView.swift */; };
 		F5BA47FB2A40AE4700A8682F /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BA47FA2A40AE4700A8682F /* ProgressBar.swift */; };
 		F5BA47FD2A41A32D00A8682F /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BA47FC2A41A32D00A8682F /* Sidebar.swift */; };
@@ -54,9 +67,21 @@
 		F5BA48022A41B6AF00A8682F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BA48012A41B6AF00A8682F /* HomeViewModel.swift */; };
 		F5BA48042A41BDD900A8682F /* ActorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BA48032A41BDD900A8682F /* ActorDetailView.swift */; };
 		F5D282E02A45C1CE00E4E750 /* BookmarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D282DF2A45C1CE00E4E750 /* BookmarksView.swift */; };
+		F5D81ADC2A5D62C400BA841F /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D81ADB2A5D62C400BA841F /* SignInViewModel.swift */; };
+		F5D81ADE2A5D645000BA841F /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D81ADD2A5D645000BA841F /* StarsView.swift */; };
+		F5D81AE02A5D662900BA841F /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D81ADF2A5D662900BA841F /* Review.swift */; };
+		F5D81AE22A5D684E00BA841F /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D81AE12A5D684E00BA841F /* ReviewsView.swift */; };
+		F5D959F42A583FDF00B4771D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D959F32A583FDF00B4771D /* LoginView.swift */; };
+		F5EE0ED42A52FE3000704833 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EE0ED32A52FE3000704833 /* CachedAsyncImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F505802B2A70186E00844D20 /* View+Changes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Changes.swift"; sourceTree = "<group>"; };
+		F505802C2A70186F00844D20 /* View+Pipify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Pipify.swift"; sourceTree = "<group>"; };
+		F505802D2A70186F00844D20 /* PipifyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipifyController.swift; sourceTree = "<group>"; };
+		F505802E2A70186F00844D20 /* LayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerView.swift; sourceTree = "<group>"; };
+		F505802F2A70186F00844D20 /* View+Buffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Buffer.swift"; sourceTree = "<group>"; };
+		F50580302A70186F00844D20 /* PipifyViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipifyViewModifier.swift; sourceTree = "<group>"; };
 		F50DA7B62A447474003E361B /* SearchMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieView.swift; sourceTree = "<group>"; };
 		F55ACD732A4C5DFD00FC61EC /* TVPageDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVPageDetailViewModel.swift; sourceTree = "<group>"; };
 		F55ACD762A4C5EC100FC61EC /* TVPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVPageViewModel.swift; sourceTree = "<group>"; };
@@ -71,9 +96,17 @@
 		F56D94622A4EDF95004A1B9E /* OliLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OliLibrary.swift; sourceTree = "<group>"; };
 		F56D94692A4EE009004A1B9E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F56D94772A4EE222004A1B9E /* brightcinema_privacypolicy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = brightcinema_privacypolicy.html; sourceTree = "<group>"; };
+		F57EE5B72A5EAF11007D7524 /* RatingReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingReviewViewModel.swift; sourceTree = "<group>"; };
+		F593A3DA2A712B1700C5F1D6 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		F593A3DC2A712E3F00C5F1D6 /* DownloadedVideosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedVideosView.swift; sourceTree = "<group>"; };
+		F59675D62A713D1800D55CEF /* DownloadedVideosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedVideosViewModel.swift; sourceTree = "<group>"; };
+		F59C625D2A5C4462007BFC71 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F59D0C442A4B337200C31BC5 /* MovieQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieQuizView.swift; sourceTree = "<group>"; };
 		F59D0C462A4B3B1F00C31BC5 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
-		F5BA47C72A40515100A8682F /* cinema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cinema.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5B7DBAA2A6FCA2A003E0F10 /* VideosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosView.swift; sourceTree = "<group>"; };
+		F5B7DBAC2A6FCA3E003E0F10 /* VideosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosViewModel.swift; sourceTree = "<group>"; };
+		F5B7DBAE2A6FDFDA003E0F10 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		F5BA47C72A40515100A8682F /* BrightCinema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrightCinema.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5BA47CA2A40515100A8682F /* cinemaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cinemaApp.swift; sourceTree = "<group>"; };
 		F5BA47CC2A40515100A8682F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F5BA47CE2A40515200A8682F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,9 +123,6 @@
 		F5BA47EB2A408ADE00A8682F /* TVPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVPageView.swift; sourceTree = "<group>"; };
 		F5BA47ED2A408CF100A8682F /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		F5BA47EF2A4099C800A8682F /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		F5BA47F12A409B6B00A8682F /* EnvironmentValues+ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+ImageCache.swift"; sourceTree = "<group>"; };
-		F5BA47F22A409B6B00A8682F /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		F5BA47F32A409B6B00A8682F /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		F5BA47F82A40A15B00A8682F /* TVPageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVPageDetailView.swift; sourceTree = "<group>"; };
 		F5BA47FA2A40AE4700A8682F /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		F5BA47FC2A41A32D00A8682F /* Sidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
@@ -100,6 +130,13 @@
 		F5BA48012A41B6AF00A8682F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F5BA48032A41BDD900A8682F /* ActorDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorDetailView.swift; sourceTree = "<group>"; };
 		F5D282DF2A45C1CE00E4E750 /* BookmarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksView.swift; sourceTree = "<group>"; };
+		F5D81ADB2A5D62C400BA841F /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		F5D81ADD2A5D645000BA841F /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
+		F5D81ADF2A5D662900BA841F /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		F5D81AE12A5D684E00BA841F /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
+		F5D959F22A582F9400B4771D /* BrightCinema.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BrightCinema.entitlements; sourceTree = "<group>"; };
+		F5D959F32A583FDF00B4771D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		F5EE0ED32A52FE3000704833 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +146,9 @@
 			files = (
 				F56D94742A4EE0EE004A1B9E /* FacebookLogin in Frameworks */,
 				F56D94702A4EE0EE004A1B9E /* FacebookBasics in Frameworks */,
+				F593D68D2A585681004A72F8 /* KeychainAccess in Frameworks */,
 				F56D94762A4EE0EE004A1B9E /* FacebookShare in Frameworks */,
+				F57EE5BC2A5EAFA5007D7524 /* SwiftUIBackports in Frameworks */,
 				F59D0C432A4B1F6800C31BC5 /* OpenAI in Frameworks */,
 				F56D946D2A4EE0D5004A1B9E /* AppsFlyerLib in Frameworks */,
 				F56D94722A4EE0EE004A1B9E /* FacebookCore in Frameworks */,
@@ -122,12 +161,6 @@
 		F525C50A2A49CBB9000E25E9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				F56D94612A4EDF95004A1B9E /* LaunchAppProperties.swift */,
-				F56D945D2A4EDF95004A1B9E /* LaunchView.swift */,
-				F56D94622A4EDF95004A1B9E /* OliLibrary.swift */,
-				F56D945E2A4EDF95004A1B9E /* PrivacyViewController.swift */,
-				F56D945F2A4EDF95004A1B9E /* Requester.swift */,
-				F56D94602A4EDF95004A1B9E /* UserDefaultsManager.swift */,
 				F5BA47FF2A41A6E700A8682F /* HomeView.swift */,
 				F5BA48012A41B6AF00A8682F /* HomeViewModel.swift */,
 			);
@@ -140,6 +173,14 @@
 				F5BA47ED2A408CF100A8682F /* LoaderView.swift */,
 				F5BA47FA2A40AE4700A8682F /* ProgressBar.swift */,
 				F5BA47FC2A41A32D00A8682F /* Sidebar.swift */,
+				F5EE0ED32A52FE3000704833 /* CachedAsyncImage.swift */,
+				F5D81ADD2A5D645000BA841F /* StarsView.swift */,
+				F505802E2A70186F00844D20 /* LayerView.swift */,
+				F505802D2A70186F00844D20 /* PipifyController.swift */,
+				F50580302A70186F00844D20 /* PipifyViewModifier.swift */,
+				F505802F2A70186F00844D20 /* View+Buffer.swift */,
+				F505802B2A70186E00844D20 /* View+Changes.swift */,
+				F505802C2A70186F00844D20 /* View+Pipify.swift */,
 			);
 			path = "Helper VIews";
 			sourceTree = "<group>";
@@ -188,9 +229,40 @@
 			path = Bookmarks;
 			sourceTree = "<group>";
 		};
+		F57EE5B92A5EAF37007D7524 /* Ratings & Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				F5D81AE12A5D684E00BA841F /* ReviewsView.swift */,
+				F57EE5B72A5EAF11007D7524 /* RatingReviewViewModel.swift */,
+			);
+			path = "Ratings & Reviews";
+			sourceTree = "<group>";
+		};
+		F593D68A2A585660004A72F8 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F5D959F32A583FDF00B4771D /* LoginView.swift */,
+				F5D81ADB2A5D62C400BA841F /* SignInViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F5B7DBB12A6FE1D4003E0F10 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				F5B7DBAA2A6FCA2A003E0F10 /* VideosView.swift */,
+				F5B7DBAC2A6FCA3E003E0F10 /* VideosViewModel.swift */,
+				F593A3DC2A712E3F00C5F1D6 /* DownloadedVideosView.swift */,
+				F59675D62A713D1800D55CEF /* DownloadedVideosViewModel.swift */,
+				F593A3DA2A712B1700C5F1D6 /* DownloadManager.swift */,
+			);
+			path = Videos;
+			sourceTree = "<group>";
+		};
 		F5BA47BE2A40515100A8682F = {
 			isa = PBXGroup;
 			children = (
+				F5D959F22A582F9400B4771D /* BrightCinema.entitlements */,
 				F5BA47D82A40516900A8682F /* Info.plist */,
 				F56D94692A4EE009004A1B9E /* LaunchScreen.storyboard */,
 				F56D94772A4EE222004A1B9E /* brightcinema_privacypolicy.html */,
@@ -202,7 +274,7 @@
 		F5BA47C82A40515100A8682F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F5BA47C72A40515100A8682F /* cinema.app */,
+				F5BA47C72A40515100A8682F /* BrightCinema.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -211,15 +283,24 @@
 			isa = PBXGroup;
 			children = (
 				F5BA47CA2A40515100A8682F /* cinemaApp.swift */,
+				F56D94612A4EDF95004A1B9E /* LaunchAppProperties.swift */,
+				F56D94622A4EDF95004A1B9E /* OliLibrary.swift */,
+				F56D945E2A4EDF95004A1B9E /* PrivacyViewController.swift */,
+				F56D945F2A4EDF95004A1B9E /* Requester.swift */,
+				F56D94602A4EDF95004A1B9E /* UserDefaultsManager.swift */,
+				F56D945D2A4EDF95004A1B9E /* LaunchView.swift */,
 				F5BA47CC2A40515100A8682F /* ContentView.swift */,
+				F593D68A2A585660004A72F8 /* Login */,
 				F525C50A2A49CBB9000E25E9 /* Home */,
 				F5BA47FE2A41A6C100A8682F /* TVPage */,
 				F55ACD752A4C5E0200FC61EC /* TVPageDetail */,
+				F57EE5B92A5EAF37007D7524 /* Ratings & Reviews */,
 				F55ACD7A2A4C5F0F00FC61EC /* MovieQuiz */,
-				F525C50B2A49CBDE000E25E9 /* Helper VIews */,
 				F55ACD7D2A4C5F5500FC61EC /* ActorDetail */,
 				F55ACD802A4C601700FC61EC /* Bookmarks */,
 				F5478E3D2A4DAEA10003386C /* SearchMovie */,
+				F5B7DBB12A6FE1D4003E0F10 /* Videos */,
+				F525C50B2A49CBDE000E25E9 /* Helper VIews */,
 				F5BA47F72A409E0F00A8682F /* NetworkService */,
 				F5BA47E62A4052EC00A8682F /* Models */,
 				F5BA47CE2A40515200A8682F /* Assets.xcassets */,
@@ -240,6 +321,8 @@
 			isa = PBXGroup;
 			children = (
 				F5BA47E92A406C9E00A8682F /* Constants.swift */,
+				F59C625D2A5C4462007BFC71 /* User.swift */,
+				F5D81ADF2A5D662900BA841F /* Review.swift */,
 				F5BA47DF2A4052E500A8682F /* Credits.swift */,
 				F5BA47DA2A4052E500A8682F /* Movie.swift */,
 				F5BA47DD2A4052E500A8682F /* MovieResults.swift */,
@@ -247,6 +330,7 @@
 				F5BA47DC2A4052E500A8682F /* PeopleCredits.swift */,
 				F5BA47DE2A4052E500A8682F /* Videos.swift */,
 				F59D0C462A4B3B1F00C31BC5 /* Quiz.swift */,
+				F5B7DBAE2A6FDFDA003E0F10 /* Video.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -255,9 +339,6 @@
 			isa = PBXGroup;
 			children = (
 				F5BA47E72A406C7E00A8682F /* Service.swift */,
-				F5BA47F12A409B6B00A8682F /* EnvironmentValues+ImageCache.swift */,
-				F5BA47F32A409B6B00A8682F /* ImageCache.swift */,
-				F5BA47F22A409B6B00A8682F /* ImageLoader.swift */,
 				F5BA47EF2A4099C800A8682F /* NetworkError.swift */,
 			);
 			path = NetworkService;
@@ -275,9 +356,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F5BA47C62A40515100A8682F /* cinema */ = {
+		F5BA47C62A40515100A8682F /* BrightCinema */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F5BA47D52A40515200A8682F /* Build configuration list for PBXNativeTarget "cinema" */;
+			buildConfigurationList = F5BA47D52A40515200A8682F /* Build configuration list for PBXNativeTarget "BrightCinema" */;
 			buildPhases = (
 				F5BA47C32A40515100A8682F /* Sources */,
 				F5BA47C42A40515100A8682F /* Frameworks */,
@@ -287,7 +368,7 @@
 			);
 			dependencies = (
 			);
-			name = cinema;
+			name = BrightCinema;
 			packageProductDependencies = (
 				F59D0C422A4B1F6800C31BC5 /* OpenAI */,
 				F56D946C2A4EE0D5004A1B9E /* AppsFlyerLib */,
@@ -295,9 +376,11 @@
 				F56D94712A4EE0EE004A1B9E /* FacebookCore */,
 				F56D94732A4EE0EE004A1B9E /* FacebookLogin */,
 				F56D94752A4EE0EE004A1B9E /* FacebookShare */,
+				F593D68C2A585681004A72F8 /* KeychainAccess */,
+				F57EE5BB2A5EAFA5007D7524 /* SwiftUIBackports */,
 			);
 			productName = cinema;
-			productReference = F5BA47C72A40515100A8682F /* cinema.app */;
+			productReference = F5BA47C72A40515100A8682F /* BrightCinema.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -315,7 +398,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F5BA47C22A40515100A8682F /* Build configuration list for PBXProject "cinema" */;
+			buildConfigurationList = F5BA47C22A40515100A8682F /* Build configuration list for PBXProject "BrightCinema" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -328,12 +411,14 @@
 				F59D0C412A4B1F6800C31BC5 /* XCRemoteSwiftPackageReference "OpenAI" */,
 				F56D946B2A4EE0D5004A1B9E /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */,
 				F56D946E2A4EE0EE004A1B9E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				F593D68B2A585681004A72F8 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				F57EE5BA2A5EAFA5007D7524 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */,
 			);
 			productRefGroup = F5BA47C82A40515100A8682F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F5BA47C62A40515100A8682F /* cinema */,
+				F5BA47C62A40515100A8682F /* BrightCinema */,
 			);
 		};
 /* End PBXProject section */
@@ -358,22 +443,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				F59D0C452A4B337200C31BC5 /* MovieQuizView.swift in Sources */,
+				F5D81ADE2A5D645000BA841F /* StarsView.swift in Sources */,
+				F50580342A70186F00844D20 /* LayerView.swift in Sources */,
+				F593A3DD2A712E3F00C5F1D6 /* DownloadedVideosView.swift in Sources */,
 				F56D94672A4EDF95004A1B9E /* LaunchAppProperties.swift in Sources */,
 				F56D94632A4EDF95004A1B9E /* LaunchView.swift in Sources */,
+				F59675D72A713D1800D55CEF /* DownloadedVideosViewModel.swift in Sources */,
+				F5B7DBAF2A6FDFDA003E0F10 /* Video.swift in Sources */,
 				F5BA47E12A4052E500A8682F /* People.swift in Sources */,
 				F5BA47E32A4052E500A8682F /* MovieResults.swift in Sources */,
-				F5BA47F62A409B6B00A8682F /* ImageCache.swift in Sources */,
+				F5B7DBAD2A6FCA3E003E0F10 /* VideosViewModel.swift in Sources */,
 				F5BA48042A41BDD900A8682F /* ActorDetailView.swift in Sources */,
-				F5BA47F52A409B6B00A8682F /* ImageLoader.swift in Sources */,
 				F55ACD7F2A4C5FE200FC61EC /* BookmarksViewModel.swift in Sources */,
+				F5B7DBAB2A6FCA2A003E0F10 /* VideosView.swift in Sources */,
+				F50580312A70186F00844D20 /* View+Changes.swift in Sources */,
 				F55ACD792A4C5EF000FC61EC /* QuizViewModel.swift in Sources */,
 				F5BA47FB2A40AE4700A8682F /* ProgressBar.swift in Sources */,
-				F5BA47F42A409B6B00A8682F /* EnvironmentValues+ImageCache.swift in Sources */,
+				F593A3DB2A712B1700C5F1D6 /* DownloadManager.swift in Sources */,
+				F50580332A70186F00844D20 /* PipifyController.swift in Sources */,
 				F56D94642A4EDF95004A1B9E /* PrivacyViewController.swift in Sources */,
 				F5BA47EC2A408ADE00A8682F /* TVPageView.swift in Sources */,
+				F5D81AE22A5D684E00BA841F /* ReviewsView.swift in Sources */,
 				F5BA47CD2A40515100A8682F /* ContentView.swift in Sources */,
+				F50580322A70186F00844D20 /* View+Pipify.swift in Sources */,
 				F55ACD742A4C5DFD00FC61EC /* TVPageDetailViewModel.swift in Sources */,
 				F5BA47E42A4052E500A8682F /* Videos.swift in Sources */,
+				F50580352A70186F00844D20 /* View+Buffer.swift in Sources */,
 				F5D282E02A45C1CE00E4E750 /* BookmarksView.swift in Sources */,
 				F5BA47EE2A408CF100A8682F /* LoaderView.swift in Sources */,
 				F55ACD7C2A4C5F3800FC61EC /* ActorDetailViewModel.swift in Sources */,
@@ -382,17 +477,24 @@
 				F5BA47EA2A406C9E00A8682F /* Constants.swift in Sources */,
 				F50DA7B72A447474003E361B /* SearchMovieView.swift in Sources */,
 				F5BA48002A41A6E700A8682F /* HomeView.swift in Sources */,
+				F5D81ADC2A5D62C400BA841F /* SignInViewModel.swift in Sources */,
 				F55ACD772A4C5EC100FC61EC /* TVPageViewModel.swift in Sources */,
+				F5D81AE02A5D662900BA841F /* Review.swift in Sources */,
+				F59C625E2A5C4462007BFC71 /* User.swift in Sources */,
 				F5BA47E82A406C7E00A8682F /* Service.swift in Sources */,
 				F56D94682A4EDF95004A1B9E /* OliLibrary.swift in Sources */,
 				F5BA47F92A40A15B00A8682F /* TVPageDetailView.swift in Sources */,
 				F5BA48022A41B6AF00A8682F /* HomeViewModel.swift in Sources */,
 				F5BA47E22A4052E500A8682F /* PeopleCredits.swift in Sources */,
+				F50580362A70186F00844D20 /* PipifyViewModifier.swift in Sources */,
 				F59D0C472A4B3B1F00C31BC5 /* Quiz.swift in Sources */,
 				F5BA47F02A4099C800A8682F /* NetworkError.swift in Sources */,
+				F57EE5B82A5EAF11007D7524 /* RatingReviewViewModel.swift in Sources */,
+				F5D959F42A583FDF00B4771D /* LoginView.swift in Sources */,
 				F56D94662A4EDF95004A1B9E /* UserDefaultsManager.swift in Sources */,
 				F5BA47E52A4052E500A8682F /* Credits.swift in Sources */,
 				F56D94652A4EDF95004A1B9E /* Requester.swift in Sources */,
+				F5EE0ED42A52FE3000704833 /* CachedAsyncImage.swift in Sources */,
 				F5BA47E02A4052E500A8682F /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,8 +621,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BrightCinema.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"cinema/Preview Content\"";
 				DEVELOPMENT_TEAM = J27JRM7FHJ;
 				ENABLE_PREVIEWS = YES;
@@ -534,7 +637,6 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -546,6 +648,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -557,8 +660,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BrightCinema.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"cinema/Preview Content\"";
 				DEVELOPMENT_TEAM = J27JRM7FHJ;
 				ENABLE_PREVIEWS = YES;
@@ -572,7 +676,6 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -584,6 +687,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -593,7 +697,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F5BA47C22A40515100A8682F /* Build configuration list for PBXProject "cinema" */ = {
+		F5BA47C22A40515100A8682F /* Build configuration list for PBXProject "BrightCinema" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F5BA47D32A40515200A8682F /* Debug */,
@@ -602,7 +706,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F5BA47D52A40515200A8682F /* Build configuration list for PBXNativeTarget "cinema" */ = {
+		F5BA47D52A40515200A8682F /* Build configuration list for PBXNativeTarget "BrightCinema" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F5BA47D62A40515200A8682F /* Debug */,
@@ -628,6 +732,22 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 14.0.0;
+			};
+		};
+		F57EE5BA2A5EAFA5007D7524 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/shaps80/SwiftUIBackports";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.0;
+			};
+		};
+		F593D68B2A585681004A72F8 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 		F59D0C412A4B1F6800C31BC5 /* XCRemoteSwiftPackageReference "OpenAI" */ = {
@@ -665,6 +785,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F56D946E2A4EE0EE004A1B9E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
 			productName = FacebookShare;
+		};
+		F57EE5BB2A5EAFA5007D7524 /* SwiftUIBackports */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F57EE5BA2A5EAFA5007D7524 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */;
+			productName = SwiftUIBackports;
+		};
+		F593D68C2A585681004A72F8 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F593D68B2A585681004A72F8 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 		F59D0C422A4B1F6800C31BC5 /* OpenAI */ = {
 			isa = XCSwiftPackageProductDependency;

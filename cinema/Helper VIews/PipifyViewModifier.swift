@@ -42,7 +42,11 @@ internal struct PipifyModifier<PipView: View>: ViewModifier {
             }
             .task {
                 logger.trace("setting view content")
-                controller.setView(pipContent())
+                if #available(iOS 16.0, *) {
+                    controller.setView(pipContent())
+                } else {
+                    // Fallback on earlier versions
+                }
             }
     }
     

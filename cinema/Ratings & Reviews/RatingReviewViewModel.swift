@@ -6,11 +6,11 @@
 //
 
 import Foundation
-
+import KeychainAccess
 final class RatingReviewViewModel: ObservableObject {
     let client: Service
     let movieId: Int
-    
+    let keychain = Keychain(service: "dev.timmychoo.cinema")
     @Published var reviews: [Review] = []
     @Published var selectedRating: Int = 0
     @Published var writtenReview: String = ""
@@ -38,7 +38,11 @@ final class RatingReviewViewModel: ObservableObject {
                     }
                 default:
                     OperationQueue.main.addOperation {
-                        self.reviewsStatus = error.localizedDescription
+                        if self.keychain["accessKey"] == nil {
+                            self.reviewsStatus = "You have to sign in to see reviews."
+                        } else {
+                            self.reviewsStatus = error.localizedDescription
+                        }
                     }
                 }
             }

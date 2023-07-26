@@ -6,11 +6,9 @@
 //
 
 import SwiftUI
+import KeychainAccess
 
 struct LaunchView: View {
-
-    @AppStorage("kSavedUrlDefaultsKey") var url: String?
-
     @State var isPresented = false
     var body: some View {
         VStack {
@@ -19,7 +17,7 @@ struct LaunchView: View {
                 .scaledToFill()
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center).ignoresSafeArea(.all)
         .fullScreenCover(isPresented: $isPresented) {
-            ContentView().preferredColorScheme(.dark)
+            ContentView().tint(Color("AccentColor"))
         }
     }
 }
