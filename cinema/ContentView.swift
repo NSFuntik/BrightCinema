@@ -86,7 +86,7 @@ struct ContentView: View {
                 }
                 
             }))
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
         
         
     }
@@ -125,110 +125,112 @@ struct ContentView: View {
                 ZStack(alignment: .top) {
                     bgColor.opacity(0.8)
                     MenuChevron
-                    VStack(alignment: .leading, spacing: 20) {
-                        userProfile
-                        Divider().background(Color.white)
-                        MenuLinks(items: userActions, selectedItem: $selectedItem)
-                        Divider().background(Color.white)
-                        Button {
-                            isSidebarVisible = false
-                            SettingsScenesPrivate.global.privacyB = true
-                            privacySheet = true
-                        } label: {
-                            HStack {
-                                Image(systemName: "person.badge.shield.checkmark")
-                                    .renderingMode(.template)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 20, height: 20)
-                                    .padding(.trailing, 18)
-                                Text("Privacy Policy")
-                                    .foregroundColor(Color(uiColor: UIColor.white))
-                                    .font(.system(size: 16 , weight: .light, design: .rounded))
-                            }
-                        }
-                        if #available(iOS 16.0, *) {
-                            ShareLink(item: URL(string: "https://apps.apple.com/us/app/bright-cinema/id6450501413")!,
-                                      label: {
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 20) {
+                            userProfile
+                            Divider().background(Color.white)
+                            MenuLinks(items: userActions, selectedItem: $selectedItem)
+                            Divider().background(Color.white)
+                            Button {
+                                isSidebarVisible = false
+                                SettingsScenesPrivate.global.privacyB = true
+                                privacySheet = true
+                            } label: {
                                 HStack {
-                                    Image(systemName: "square.and.arrow.up")
+                                    Image(systemName: "person.badge.shield.checkmark")
                                         .renderingMode(.template)
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 20, height: 20)
                                         .padding(.trailing, 18)
-                                    Text("Share app")
+                                    Text("Privacy Policy")
                                         .foregroundColor(Color(uiColor: UIColor.white))
                                         .font(.system(size: 16 , weight: .light, design: .rounded))
                                 }
-                            })
-                        }
-                        Button {
-                            OperationQueue.main.addOperation {
-                                if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
-                                    SKStoreReviewController.requestReview(in: scene)
-                                }
                             }
-                        } label: {
-                            HStack {
-                                Image(systemName: "star")
-                                    .renderingMode(.template)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 20, height: 20)
-                                    .padding(.trailing, 18)
-                                Text("Rate us")
-                                    .foregroundColor(Color(uiColor: UIColor.white))
-                                    .font(.system(size: 16 , weight: .light, design: .rounded))
+                            if #available(iOS 16.0, *) {
+                                ShareLink(item: URL(string: "https://apps.apple.com/us/app/bright-cinema/id6450501413")!,
+                                          label: {
+                                    HStack {
+                                        Image(systemName: "square.and.arrow.up")
+                                            .renderingMode(.template)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 20, height: 20)
+                                            .padding(.trailing, 18)
+                                        Text("Share app")
+                                            .foregroundColor(Color(uiColor: UIColor.white))
+                                            .font(.system(size: 16 , weight: .light, design: .rounded))
+                                    }
+                                })
                             }
-                        }
-                        
-                        Button {
-                            OperationQueue.main.addOperation {
-                                let keychain = Keychain(service: "dev.timmychoo.cinema")
-                                keychain["accessKey"] = nil
-                                keychain["userID"] = nil
-                                UserDefaults.standard.set(nil, forKey: "downloadedFiles")
+                            Button {
                                 OperationQueue.main.addOperation {
-                                    UIApplication.shared.keyWindow?.rootViewController = UIHostingController(rootView: LaunchView(isPresented: true))
+                                    if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                                        SKStoreReviewController.requestReview(in: scene)
+                                    }
+                                }
+                            } label: {
+                                HStack {
+                                    Image(systemName: "star")
+                                        .renderingMode(.template)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 20, height: 20)
+                                        .padding(.trailing, 18)
+                                    Text("Rate us")
+                                        .foregroundColor(Color(uiColor: UIColor.white))
+                                        .font(.system(size: 16 , weight: .light, design: .rounded))
                                 }
                             }
-                        } label: {
-                            HStack {
-                                Image(systemName: "door.left.hand.open")
-                                    .renderingMode(.template)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 20, height: 20)
-                                    .padding(.trailing, 18)
-                                Text("Log out")
-                                    .foregroundColor(Color(uiColor: UIColor.white))
-                                    .font(.system(size: 16 , weight: .light, design: .rounded))
+                            
+                            Button {
+                                OperationQueue.main.addOperation {
+                                    let keychain = Keychain(service: "dev.timmychoo.cinema")
+                                    keychain["accessKey"] = nil
+                                    keychain["userID"] = nil
+                                    UserDefaults.standard.set(nil, forKey: "downloadedFiles")
+                                    OperationQueue.main.addOperation {
+                                        UIApplication.shared.keyWindow?.rootViewController = UIHostingController(rootView: LaunchView(isPresented: true))
+                                    }
+                                }
+                            } label: {
+                                HStack {
+                                    Image(systemName: "door.left.hand.open")
+                                        .renderingMode(.template)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 20, height: 20)
+                                        .padding(.trailing, 18)
+                                    Text("Log out")
+                                        .foregroundColor(Color(uiColor: UIColor.white))
+                                        .font(.system(size: 16 , weight: .light, design: .rounded))
+                                }
                             }
+                            Spacer()
+                            Button {
+                                OperationQueue.main.addOperation {
+                                    isDeletingAlert = true
+                                }
+                            } label: {
+                                HStack {
+                                    Image(systemName: "person.fill.xmark")
+                                        .renderingMode(.template)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 20, height: 20)
+                                        .padding(.trailing, 18)
+                                        .font(.system(size: 16 , weight: .thin, design: .rounded))
+                                    
+                                    Text("Delete account")
+                                        .foregroundColor(Color(uiColor: UIColor.white))
+                                        .font(.system(size: 16 , weight: .thin, design: .rounded))
+                                }
+                            }.padding(.bottom, 40)
                         }
-                        Spacer()
-                        Button {
-                            OperationQueue.main.addOperation {
-                                isDeletingAlert = true
-                            }
-                        } label: {
-                            HStack {
-                                Image(systemName: "person.fill.xmark")
-                                    .renderingMode(.template)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 20, height: 20)
-                                    .padding(.trailing, 18)
-                                    .font(.system(size: 16 , weight: .thin, design: .rounded))
-                                
-                                Text("Delete account")
-                                    .foregroundColor(Color(uiColor: UIColor.white))
-                                    .font(.system(size: 16 , weight: .thin, design: .rounded))
-                            }
-                        }.padding(.bottom, 40)
+                        .padding(.top, 80)
+                        .padding(.horizontal, 40)
                     }
-                    .padding(.top, 80)
-                    .padding(.horizontal, 40)
                 }
                 .frame(width: sideBarWidth)
                 .offset(x: isSidebarVisible ? 0 : -sideBarWidth)

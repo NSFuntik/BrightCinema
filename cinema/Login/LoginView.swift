@@ -45,6 +45,8 @@ struct LoginView: View {
                         HStack {
                             Text(
                             """
+                            Let's dive into the fantastic features offered by Bright Cinema:
+
                             **- AI Description:**
                                 Unique and in-depth movie descriptions created
                                 with AI.
@@ -73,6 +75,14 @@ struct LoginView: View {
                             **- Reviews and Ratings:**
                                 Make well-informed decisions by reading reviews
                                 and ratings from fellow movie enthusiasts.
+                            
+                            **- My Library:**
+                                A convenient way to store, view and manage video
+                                files. Users can stream videos in real time,
+                                upload them to a server for secure storage,
+                                download them to a device for offline viewing,
+                                and perform delete operations to manage
+                                their video collection.
                             """)
                             .foregroundColor(.white)
                             .font(.system(size: 15, weight: .light, design: .rounded))

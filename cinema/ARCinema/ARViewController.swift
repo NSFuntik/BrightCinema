@@ -33,6 +33,7 @@ class ARViewController: UIViewController, CLLocationManagerDelegate, ARCoachingO
         let videoPlane = ModelEntity(mesh: .generatePlane(width: 0.8, depth: 0.45), materials: [videoMaterial])
         
         let anchor = AnchorEntity(plane: .vertical)
+        
         addCoaching()
         anchor.addChild(videoPlane)
         arView.scene.anchors.append(anchor)
@@ -86,8 +87,6 @@ class ARViewController: UIViewController, CLLocationManagerDelegate, ARCoachingO
             self.videoPlayer = nil
 //            self.arView = nil
         }
-
-
     }
     
     @objc func play(sender: UIButton!) {
@@ -105,12 +104,13 @@ class ARViewController: UIViewController, CLLocationManagerDelegate, ARCoachingO
         coachingOverlay.autoresizingMask = [
             .flexibleWidth, .flexibleHeight
         ]
+        
 //        arView.addSubview(coachingOverlay)
                 view.addSubview(coachingOverlay)
         
         coachingOverlay.session = arView.session
         coachingOverlay.delegate = self
-        coachingOverlay.goal = .horizontalPlane
+        coachingOverlay.goal = .verticalPlane
         
         coachingOverlay.fillSuperview()
     }
