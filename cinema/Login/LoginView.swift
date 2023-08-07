@@ -45,19 +45,34 @@ struct LoginView: View {
                         HStack {
                             Text(
                             """
-                            **- AI Description:**   Unique and in-depth movie descriptions created with AI.
+                            **- AI Description:**
+                                Unique and in-depth movie descriptions created
+                                with AI.
 
-                            **- AI Quizzes:**   Test your knowledge of the movie industry with the exciting quizzes.
+                            **- AI Quizzes:**
+                                Test your knowledge of the movie industry
+                                with the exciting quizzes.
 
-                            **- Movie Watchlist:**  Build and share your own collection of movies and shows by adding them to watchlist.
+                            **- Movie Watchlist:**
+                                Build and share your own collection of movies and
+                                shows by adding them to watchlist.
 
-                            **- Trailers Galore:**  Immerse yourself in the movie's world by watching thrilling trailers.
+                            **- Trailers Galore:**
+                                Immerse yourself in the movie's world by watching
+                                thrilling trailers.
 
-                            **- Cast Insights:**    Discover the stars behind the scenes with detailed information about the cast.
+                            **- Cast Insights:**
+                                Discover the stars behind the scenes with detailed
+                                information about the cast.
 
-                            **- Movie Info Hub:**   Uncover a treasure trove of movie details, including title, genre, director, writer, and release date.
+                            **- Movie Info Hub:**
+                                Uncover a treasure trove of movie details,
+                                including title, genre, director, writer
+                                and release date.
 
-                            **- Reviews and Ratings:**  Make well-informed decisions by reading reviews and ratings from fellow movie enthusiasts.
+                            **- Reviews and Ratings:**
+                                Make well-informed decisions by reading reviews
+                                and ratings from fellow movie enthusiasts.
                             """)
                             .foregroundColor(.white)
                             .font(.system(size: 15, weight: .light, design: .rounded))
@@ -95,6 +110,7 @@ struct LoginView: View {
                     }.signInWithAppleButtonStyle(.white).frame(width: 280, height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).cornerRadius(30).padding([.top, .horizontal])
                     Text("Autorization is required to access user's reviews")
                         .font(.system(size: 14, weight: .light, design: .rounded))
+                        .foregroundStyle(.secondary)
                 }
             }
         }.padding(.horizontal, 20).frame(width: UIScreen.main.bounds.width)//

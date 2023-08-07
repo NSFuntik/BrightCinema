@@ -31,13 +31,11 @@ struct StarsView: View {
     @State var rating: Int
     private let fullCount: Int
     private let emptyCount: Int
-//    private let halfFullCount: Int
 
     init(rating: Int) {
         self.rating = rating
         fullCount = Int(rating)
         emptyCount = Int(StarsView.MAX_RATING - rating)
-//        halfFullCount = (Float(fullCount + emptyCount) < StarsView.MAX_RATING) ? 1 : 0
     }
 
     var body: some View {
@@ -47,9 +45,6 @@ struct StarsView: View {
                     rating = n
                 }
             }
-//            ForEach(0..<halfFullCount, id: \.self) { _ in
-//                self.halfFullStar
-//            }
             ForEach(0..<emptyCount, id: \.self) { _ in
                 self.emptyStar
             }

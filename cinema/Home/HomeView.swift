@@ -18,14 +18,14 @@ struct HomeView: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
                 upcomingMoviesTabs
-                    .frame(height: UIScreen.main.bounds.height / 3, alignment: .center).layoutPriority(1)
+                    .frame(height: UIScreen.main.bounds.height / 2.75, alignment: .center).layoutPriority(1)
                 celebitiesList
                 
                 MoviesListView(movies: $homeVM.nowPlayingMovies, title: "Now Playing", client: homeVM.client)
                 MoviesListView(movies: $homeVM.trendingMovies, title: "Trending", client: homeVM.client)
                 MoviesListView(movies: $homeVM.popularMovies, title: "Top Rated", client: homeVM.client)
             }
-        }
+        }.ignoresSafeArea(.all)
     }
     
     private struct MoviesListView: View {
@@ -37,26 +37,43 @@ struct HomeView: View {
             Section {
                 ScrollView(.horizontal, showsIndicators: true) {
                     HStack {
-                        ForEach($movies, id: \.id) { $movie in
-                            if let posterPath = movie.poster_path {
-                                NavigationLink {
-                                    TVPageDetailView(detailVM: TVPageDetailViewModel(client: client, movie: movie))
-                                } label: {
-                                   CachedAsyncImage(
-                                        url: URL(string: ImageKeys.IMAGE_BASE_URL)!
-                                            .appendingPathComponent(ImageKeys.PosterSizes.DETAIL_POSTER)
-                                            .appendingPathComponent(posterPath),
-                                        content: {
-                                            $0
-                                                .resizable()
-                                                .scaledToFill()
-                                                .clipShape(RoundedRectangle(cornerRadius: 13))
-                                                .frame(height: 150, alignment: .center)
-                                                .padding(5)
-                                        },
-                                        placeholder: { LoaderView(tintColor: Color("AccentColor")).clipShape(RoundedRectangle(cornerRadius: 13)).shadow(color: .gray, radius: 3, x: 0, y: 3)
-                                                .frame(height: 150, alignment: .center)
-                                                .padding(5) })
+                        if movies.isEmpty  {
+                            ForEach(0..<6) { i in
+                                RoundedRectangle(cornerRadius: 13)
+                                    .shadow(color: .gray, radius: 3, x: 0, y: 3)
+                                    .foregroundColor(.secondary.opacity(0.5))
+                                    .frame(width: 100, height: 150, alignment: .center)
+                                    .padding(5)
+                            }
+                        } else {
+                            ForEach($movies, id: \.id) { $movie in
+                                if let posterPath = movie.poster_path {
+                                    NavigationLink {
+                                        TVPageDetailView(detailVM: TVPageDetailViewModel(client: client, movie: movie))
+                                    } label: {
+                                        CachedAsyncImage(
+                                            url: URL(string: ImageKeys.IMAGE_BASE_URL)!
+                                                .appendingPathComponent(ImageKeys.PosterSizes.DETAIL_POSTER)
+                                                .appendingPathComponent(posterPath),
+                                            content: {
+                                                $0
+                                                    .resizable()
+                                                    .scaledToFill()
+                                                    .clipShape(RoundedRectangle(cornerRadius: 13))
+                                                    .frame(height: 150, alignment: .center)
+                                                    .padding(5)
+                                            },
+                                            placeholder: {
+                                                LoaderView(tintColor: Color("AccentColor"))
+                                                    .background {
+                                                        RoundedRectangle(cornerRadius: 13)
+                                                            .shadow(color: .gray, radius: 3, x: 0, y: 3)
+                                                            .foregroundColor(.secondary.opacity(0.5))
+                                                            .frame(width: 100, height: 150, alignment: .center)
+                                                            .padding(5)
+                                                    }
+                                                 })
+                                    }
                                 }
                             }
                         }
@@ -81,6 +98,14 @@ struct HomeView: View {
      
     var upcomingMoviesTabs: some View {
         TabView {
+            if homeVM.upcomingMovies.isEmpty {
+                Rectangle()
+                    .fill(.gray.opacity(0.5))
+                    .frame(width: UIScreen.main.bounds.width,
+                           height: UIScreen.main.bounds.height / 2.75, alignment: .center)
+            } else {
+                
+            }
             ForEach($homeVM.upcomingMovies, id: \.id) { movie in
                 if let posterPath = movie.wrappedValue.backdrop_path {
                     NavigationLink {
@@ -94,7 +119,7 @@ struct HomeView: View {
                                 $0.resizable()
                                     .scaledToFill()
                                     .frame(width: UIScreen.main.bounds.width,
-                                           height: UIScreen.main.bounds.height / 3, alignment: .center)
+                                           height: UIScreen.main.bounds.height / 2.75, alignment: .center)
                                     .overlay {
                                         VStack(alignment: .leading, spacing: 5) {
                                             Spacer()
@@ -113,7 +138,13 @@ struct HomeView: View {
                                     }
                             }, placeholder: {
                                 LoaderView(tintColor: Color("AccentColor"))
-                                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3, alignment: .center)
+                                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.75, alignment: .center)
+                                    .background {
+                                        Rectangle()
+                                            .fill(.gray.opacity(0.5))
+                                            .frame(width: UIScreen.main.bounds.width,
+                                                   height: UIScreen.main.bounds.height / 2.75, alignment: .center)
+                                    }
                             }
                         )
                         .scaledToFill()
@@ -131,27 +162,38 @@ struct HomeView: View {
         Section {
             ScrollView(.horizontal, showsIndicators: true) {
                 HStack {
-                    ForEach($homeVM.celebritiesMovies, id: \.id) { $celebrity in
-                        if let posterPath = celebrity.profile_path {
-                            NavigationLink {
-                                ActorDetailView(actorDetailVM: ActorDetailViewModel(actorID: celebrity.id!, client: homeVM.client))
-                            } label: {
-                               CachedAsyncImage(
-                                    url: URL(string: ImageKeys.IMAGE_BASE_URL)!.appendingPathComponent(ImageKeys.PosterSizes.DETAIL_POSTER).appendingPathComponent(posterPath),
-                                    content: {
-                                        $0
-                                            .resizable()
-                                            .scaledToFill()
-                                            .clipShape(Circle())
-                                            .frame(width: 75, height: 75)
-                                            .padding(5)
-                                    },
-                                    placeholder: {
-                                        LoaderView(tintColor: Color("AccentColor"))
-                                            .clipShape(Circle())
-                                            .frame(width: 75, height: 75)
-                                            .padding(5)
-                                    })
+                    if homeVM.celebritiesMovies.isEmpty  {
+                        ForEach(0..<6) { i in
+                            Circle()
+                                .shadow(color: .gray, radius: 3, x: 0, y: 3)
+                                .foregroundColor(.secondary.opacity(0.5))
+                            .frame(width: 75, height: 75)
+                            .padding(5)
+                        }
+                    } else {
+                        
+                        ForEach($homeVM.celebritiesMovies, id: \.id) { $celebrity in
+                            if let posterPath = celebrity.profile_path {
+                                NavigationLink {
+                                    ActorDetailView(actorDetailVM: ActorDetailViewModel(actorID: celebrity.id!, client: homeVM.client))
+                                } label: {
+                                    CachedAsyncImage(
+                                        url: URL(string: ImageKeys.IMAGE_BASE_URL)!.appendingPathComponent(ImageKeys.PosterSizes.DETAIL_POSTER).appendingPathComponent(posterPath),
+                                        content: {
+                                            $0
+                                                .resizable()
+                                                .scaledToFill()
+                                                .clipShape(Circle())
+                                                .frame(width: 75, height: 75)
+                                                .padding(5)
+                                        },
+                                        placeholder: {
+                                            LoaderView(tintColor: Color("AccentColor"))
+                                                .clipShape(Circle())
+                                                .frame(width: 75, height: 75)
+                                                .padding(5)
+                                        })
+                                }
                             }
                         }
                     }

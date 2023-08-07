@@ -257,12 +257,12 @@ final class Service: ObservableObject {
     }
     
     // Movie Videos
-    func movieVideos(movieID:Int, completion: @escaping (VideoInfo)->()) {
+    func movieVideos(movieID:Int, completion: @escaping (TrailersDTO)->()) {
         
         let getURL = "/movie/\(movieID)/videos?api_key=\(Api.KEY)&language=en-US"
         getDataRequest(url: getURL) { jsonData in
             do {
-                let results = try JSONDecoder().decode(VideoInfo.self, from: jsonData as! Data)
+                let results = try JSONDecoder().decode(TrailersDTO.self, from: jsonData as! Data)
                 completion(results)
             }
             catch {
@@ -272,12 +272,12 @@ final class Service: ObservableObject {
     }
     
     // TV Videos
-    func tvVideos(tvID:Int, completion: @escaping (VideoInfo)->()) {
+    func tvVideos(tvID:Int, completion: @escaping (TrailersDTO)->()) {
         
         let getURL = "/tv/\(tvID)/videos?api_key=\(Api.KEY)&language=en-US"
         getDataRequest(url: getURL) { jsonData in
             do {
-                let results = try JSONDecoder().decode(VideoInfo.self, from: jsonData as! Data)
+                let results = try JSONDecoder().decode(TrailersDTO.self, from: jsonData as! Data)
                 completion(results)
             }
             catch {
@@ -439,7 +439,7 @@ Make quiz for a movie \"\(movieName)\" in 10 questions as JSON format like: {
             }
             let result = try JSONDecoder().decode(AccessData.self, from: data)
             debugPrint("UUID: ", fingerprint)
-
+            
             debugPrint("ACCESSTOKEN: ", result.accessToken)
             return result.accessToken
         }
@@ -449,37 +449,12 @@ Make quiz for a movie \"\(movieName)\" in 10 questions as JSON format like: {
         
     }
     
-    func isUsernameUnique(username: String) async throws -> Bool {
-        let path = "\(Api.LOGIN_URL)users/exist/\(username)"
-        
-        if let url = URL(string: path) {
-            print(url)
-            // REQUEST
-            let request = URLRequest(url: url)
-            
-            // DataTask + RESUME
-            let (data, response) = try await session.data(for: request)
-            guard let httpResponse = response as? HTTPURLResponse,
-                  httpResponse.statusCode == 200 else {
-                throw NetworkError.invalidResponse
-            }
-            
-            let isExist = String(decoding: data, as: UTF8.self)
-            
-            return isExist == "true" ? false : true
-        }
-        else {
-            throw NetworkError.urlError(URLError(.badURL))
-        }
-        
-    }
-    
     static func deleteUser() async throws {
         let path = "\(Api.LOGIN_URL)users/me"
         let keychain = Keychain(service: "dev.timmychoo.cinema")
         
         if let url = URL(string: path), let accessKey = keychain["accessKey"] {
-
+            
             // REQUEST
             var request = URLRequest(url: url)
             request.httpMethod = "DELETE"
@@ -555,7 +530,7 @@ Make quiz for a movie \"\(movieName)\" in 10 questions as JSON format like: {
                 }
                 throw NetworkError.invalidResponse
             }
-//            let result = try JSONDecoder().decode(AccessData.self, from: data)
+            //            let result = try JSONDecoder().decode(AccessData.self, from: data)
         }
         catch {
             throw error
@@ -563,43 +538,37 @@ Make quiz for a movie \"\(movieName)\" in 10 questions as JSON format like: {
     }
     
     func submitVideo(url: String, title: String) async throws {
-        let path = "\(Api.LOGIN_URL)files/upload"
-//        do {
-            guard let requestURL = URL(string: path), let url = URL(string: url) else {
-                throw NetworkError.urlError(URLError(.badURL))
-            }
-            let videoURLModel = Video(url: url.absoluteString, title: title)
-            let uploadData = try JSONEncoder().encode(videoURLModel)
-            debugPrint(try JSONDecoder().decode(Video.self, from: uploadData))
-         
+        let path = "\(Api.LOGIN_URL)videos/save"
+        guard let requestURL = URL(string: path), let url = URL(string: url) else {
+            throw NetworkError.urlError(URLError(.badURL))
+        }
+        let videoURLModel = Video(url: url.absoluteString, name: title)
+        let uploadData = try JSONEncoder().encode(videoURLModel)
+        debugPrint(try JSONDecoder().decode(Video.self, from: uploadData))
+        
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let accessToken: String = keychain["accessKey"] else {
+            throw NetworkError.invalidCredentials
+        }
+        request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        let (_, response) = try await URLSession.shared.upload(for: request, from: uploadData)
+        debugPrint(response)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
             
-            var request = URLRequest(url: requestURL)
-            request.httpMethod = "POST"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            guard let accessToken: String = keychain["accessKey"] else {
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 401 {
                 throw NetworkError.invalidCredentials
             }
-            request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-            let (_, response) = try await URLSession.shared.upload(for: request, from: uploadData)
-            debugPrint(response)
-            
-            guard let httpResponse = response as? HTTPURLResponse,
-                  httpResponse.statusCode == 200 else {
-                
-                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 401 {
-                    throw NetworkError.invalidCredentials
-                }
-                throw NetworkError.invalidResponse
-            }
-//            let result = try JSONDecoder().decode(AccessData.self, from: data)
-//        }
-//        catch {
-//            throw error
-//        }
+            throw NetworkError.invalidResponse
+        }
     }
     
     func fetchUserVideos() async throws -> [File] {
-        let path = "\(Api.LOGIN_URL)users/me/files"
+        let path = "\(Api.LOGIN_URL)users/me/videos"
         guard let url = URL(string: path) else { throw NetworkError.urlError(URLError(.badURL)) }
         
         // REQUEST
@@ -607,13 +576,13 @@ Make quiz for a movie \"\(movieName)\" in 10 questions as JSON format like: {
         guard let accessToken: String = keychain["accessKey"] else {
             throw NetworkError.invalidCredentials
         }
-              
+        
         request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         
         // DataTask + RESUME
         let (data, response) = try await session.data(for: request)
         debugPrint(response)
-
+        
         guard let httpResponse = response as? HTTPURLResponse,
               httpResponse.statusCode == 200 else {
             throw NetworkError.invalidResponse
@@ -622,7 +591,7 @@ Make quiz for a movie \"\(movieName)\" in 10 questions as JSON format like: {
         do {
             let results = try JSONDecoder().decode(FilesResponse.self, from: data)
             debugPrint(results)
-            return results.files
+            return results.videos
         } catch {
             print("There was an error with searching: \(error.localizedDescription)")
             throw error
@@ -630,7 +599,7 @@ Make quiz for a movie \"\(movieName)\" in 10 questions as JSON format like: {
     }
     
     func fetchVideo(uuid: String) async throws -> Data {
-        let path = "\(Api.LOGIN_URL)files/\(uuid)"
+        let path = "\(Api.LOGIN_URL)videos/\(uuid)"
         guard let url = URL(string: path) else { throw NetworkError.urlError(URLError(.badURL)) }
         
         // REQUEST
@@ -638,7 +607,7 @@ Make quiz for a movie \"\(movieName)\" in 10 questions as JSON format like: {
         guard let accessToken: String = keychain["accessKey"] else {
             throw NetworkError.invalidCredentials
         }
-              
+        
         request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         
         // DataTask + RESUME
@@ -652,11 +621,11 @@ Make quiz for a movie \"\(movieName)\" in 10 questions as JSON format like: {
     }
     
     func deleteFile(uuid: String) async throws {
-        let path = "\(Api.LOGIN_URL)files/\(uuid)"
+        let path = "\(Api.LOGIN_URL)videos/\(uuid)"
         let keychain = Keychain(service: "dev.timmychoo.cinema")
         
         if let url = URL(string: path), let accessKey = keychain["accessKey"] {
-
+            
             // REQUEST
             var request = URLRequest(url: url)
             request.httpMethod = "DELETE"

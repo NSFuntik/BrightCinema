@@ -14,7 +14,43 @@ struct BookmarksView: View {
     @State private var activityItems: [Any] = []
     var body: some View {
         VStack {
-            Spacer()
+            HStack(alignment: .bottom ) {
+                Text("Bookmarks")
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .font(.system(size: 30, weight: .bold, design: .rounded))
+                    .minimumScaleFactor(0.7)
+                    .foregroundColor(.white)
+                    .padding(.leading, 15)
+                Spacer()
+                
+                    if #available(iOS 16.0, *) {
+                        Button {
+                            movieTitles = self.bookmarksVM.movies.compactMap {
+                                return $0.title
+                            }
+                           
+                                
+                                movieTitles.insert("Hey! Check out my watchlist!", at: 0)
+                            let AV = UIActivityViewController(activityItems: [movieTitles.joined(separator: "\n ✔︎ ")]
+                               , applicationActivities: nil)
+                              
+                             let scenes = UIApplication.shared.connectedScenes
+                             let windowScene = scenes.first as? UIWindowScene
+                              
+                             windowScene?.keyWindow?.rootViewController?.present(AV, animated: true, completion: nil)
+                        } label: {
+                            Image("SharePlaylist")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color("AccentColor"))
+                                .frame(width: 30, height: 30, alignment: .center)
+                        }
+
+//                        ShareLink(item:
+                    }
+                
+            }.padding([.top, .horizontal], 10).frame(height: 80)
             if bookmarksVM.movies.isEmpty {
                 Text("There is no saved movies or shows yet.\n You can add it in \"Movies\" Tab")
                     .font(.system(size: 20, weight: .light, design: .rounded))
@@ -56,27 +92,6 @@ struct BookmarksView: View {
                 }
             }
             .listStyle(.grouped)
-        }.toolbar{
-            if #available(iOS 16.0, *) {
-                ShareLink(item: movieTitles.joined(separator: "\n ✔︎ "))
-                    .task {
-                        movieTitles = self.bookmarksVM.movies.compactMap {
-                            return $0.title
-                        }
-                        movieTitles.insert("Hey! Check out my watchlist!", at: 0)
-                    }
-            }
-
-
-//            Button(action: {
-//                defer {
-//                    isShareSheetPresented = true
-//                }
-//                
-//                activityItems.append()
-//            }, label: {
-//                Image(systemName: "square.and.arrow.up.fill")
-//            })
         }
         .sheet(isPresented: $isShareSheetPresented) {
             var items = activityItems

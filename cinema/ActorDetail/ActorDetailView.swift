@@ -44,68 +44,70 @@ struct ActorDetailView: View {
                 }
                 Spacer()
             }
-            Section {
-                ScrollView(.horizontal, showsIndicators: true) {
-                    HStack {
-                        ForEach($actorDetailVM.actorCast, id: \.id) { $cast in
-                            if let posterPath = cast.poster_path {
-                                NavigationLink {
-                                    TVPageDetailView(detailVM: TVPageDetailViewModel(client: actorDetailVM.client,
-                                                                                     movie: Movie(id: cast.id,
-                                                                                                  title: nil, backdrop_path: nil, poster: nil, overview: nil, release_date: nil, video: nil, genre_ids: nil, popularity: nil, first_air_date: nil, name: nil),
-                                                                                     isTV: false))
-                                } label: {
-                                   CachedAsyncImage(
-                                        url: URL(string: ImageKeys.IMAGE_BASE_URL)!
-                                            .appendingPathComponent(ImageKeys.PosterSizes.DETAIL_POSTER)
-                                            .appendingPathComponent(posterPath),
-                                        content: {
-                                            $0
-                                                .resizable()
-                                                .scaledToFill()
-                                                .clipShape(RoundedRectangle(cornerRadius: 13))
-                                                .frame(height: 150, alignment: .center)
-                                                .padding(5)
-                                        },
-                                        placeholder: { LoaderView(tintColor: Color("AccentColor")) })
+            ScrollView {
+                Section {
+                    ScrollView(.horizontal, showsIndicators: true) {
+                        HStack {
+                            ForEach($actorDetailVM.actorCast, id: \.id) { $cast in
+                                if let posterPath = cast.poster_path {
+                                    NavigationLink {
+                                        TVPageDetailView(detailVM: TVPageDetailViewModel(client: actorDetailVM.client,
+                                                                                         movie: Movie(id: cast.id,
+                                                                                                      title: nil, backdrop_path: nil, poster: nil, overview: nil, release_date: nil, video: nil, genre_ids: nil, popularity: nil, first_air_date: nil, name: nil),
+                                                                                         isTV: false))
+                                    } label: {
+                                        CachedAsyncImage(
+                                            url: URL(string: ImageKeys.IMAGE_BASE_URL)!
+                                                .appendingPathComponent(ImageKeys.PosterSizes.DETAIL_POSTER)
+                                                .appendingPathComponent(posterPath),
+                                            content: {
+                                                $0
+                                                    .resizable()
+                                                    .scaledToFill()
+                                                    .clipShape(RoundedRectangle(cornerRadius: 13))
+                                                    .frame(height: 150, alignment: .center)
+                                                    .padding(5)
+                                            },
+                                            placeholder: { LoaderView(tintColor: Color("AccentColor")) })
+                                    }
                                 }
                             }
                         }
-                    }
-                }.padding(.horizontal, 5)
-            } header: {
-                VStack {
-                    HStack {
-                        Text("Actor's Cast")
-                            .font(.system(size: 17, weight: .bold, design: .rounded))
-                            .foregroundColor(Color.accentColor)
-                            .padding(.leading, 5)
-                        Spacer()
+                    }.padding(.horizontal, 5)
+                } header: {
+                    VStack {
+                        HStack {
+                            Text("Actor's Cast")
+                                .font(.system(size: 17, weight: .bold, design: .rounded))
+                                .foregroundColor(Color.accentColor)
+                                .padding(.leading, 5)
+                            Spacer()
+                        }.padding(.bottom, -5)
+                        Divider().background(Color("AccentColor"))
                     }.padding(.bottom, -5)
-                    Divider().background(Color("AccentColor"))
-                }.padding(.bottom, -5)
-            }
-            Section {
-                ScrollView {
-                    Text($actorDetailVM.actor.wrappedValue.biography ?? "")
-                        .font(.system(size: 15, weight: .light, design: .rounded))
-                        .multilineTextAlignment(.leading)
-                        .foregroundColor(Color.white)
-                }.padding(.horizontal, 5)
-            } header: {
-                VStack {
-                    HStack {
-                        Text("Biography")
-                            .font(.system(size: 17, weight: .bold, design: .rounded))
-                            .foregroundColor(Color.accentColor)
-                            .padding(.leading, 5)
-                        
-                        Spacer()
+                }
+                Section {
+                    ScrollView {
+                        Text($actorDetailVM.actor.wrappedValue.biography ?? "")
+                            .font(.system(size: 15, weight: .light, design: .rounded))
+                            .multilineTextAlignment(.leading)
+                            .foregroundColor(Color.white)
+                    }.padding(.horizontal, 5)
+                } header: {
+                    VStack {
+                        HStack {
+                            Text("Biography")
+                                .font(.system(size: 17, weight: .bold, design: .rounded))
+                                .foregroundColor(Color.accentColor)
+                                .padding(.leading, 5)
+                            
+                            Spacer()
+                        }.padding(.bottom, -5)
+                        Divider().background(Color("AccentColor"))
                     }.padding(.bottom, -5)
-                    Divider().background(Color("AccentColor"))
-                }.padding(.bottom, -5)
+                }
+                Spacer(minLength: 100)
             }
-            Spacer()
         }.ignoresSafeArea(.all)
     }
 }

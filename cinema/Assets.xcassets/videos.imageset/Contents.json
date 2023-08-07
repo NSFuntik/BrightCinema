@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "video 2.png",
+      "filename" : "loveMovie 2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "video 1.png",
+      "filename" : "loveMovie 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "video.png",
+      "filename" : "loveMovie.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

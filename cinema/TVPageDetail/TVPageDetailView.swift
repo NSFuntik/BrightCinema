@@ -49,7 +49,7 @@ struct TVPageDetailView: View {
                             if let releaseDate = $detailVM.movie.wrappedValue.release_date?.convertDateString() {
                                 Text("**Release Date:** \(releaseDate)")
                                     .font(.system(size: 16, weight: .light, design: .rounded))
-                                    .foregroundColor(Color.white)
+                                    .foregroundColor(Color(uiColor: UIColor.label))
                             }
                             if let runtime = $detailVM.movie.wrappedValue.runtime {
                                 Text("**Runtime:** \(runtime) min")

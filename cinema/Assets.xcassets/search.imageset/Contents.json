@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Shape.png",
+      "filename" : "SearchMovie 2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Shape@2x.png",
+      "filename" : "SearchMovie 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Shape@3x.png",
+      "filename" : "SearchMovie.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

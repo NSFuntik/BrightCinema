@@ -73,7 +73,7 @@ public struct OliLibrary {
         URLSession.shared.dataTask(with: requestURL) {(data, response, error) in
             guard let data = data else { return }
             let text = String(data: data, encoding: .utf8)!
-            print("ROUTE: \(text)")
+            debugPrint("ROUTE: \(text)")
             UserDefaultsManager.shared.setRoute(to: text)
         }.resume()
     }

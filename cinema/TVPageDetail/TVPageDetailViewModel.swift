@@ -9,7 +9,7 @@ import Combine
 import OpenAI
 import Foundation
 final class TVPageDetailViewModel: ObservableObject {
-    @Published var trailers: [Videos] = []
+    @Published var trailers: [Trailer] = []
     let client: Service
     private var cancelRequest: Bool = false
     @Published var movie: Movie
@@ -26,7 +26,7 @@ final class TVPageDetailViewModel: ObservableObject {
                 }
             }
         }
-        self.client.tvVideos(tvID: movie.id!) { (videos: VideoInfo) in
+        self.client.tvVideos(tvID: movie.id!) { (videos: TrailersDTO) in
             if let allVideos = videos.results {
                 DispatchQueue.main.async {
                     self.trailers = allVideos

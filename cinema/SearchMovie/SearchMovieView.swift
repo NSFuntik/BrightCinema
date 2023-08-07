@@ -27,6 +27,17 @@ struct SearchMovieView: View {
     @StateObject var searchVM = SearchMovieViewModel()
     var body: some View {
         VStack {
+            HStack(alignment: .bottom ) {
+                Text("Search movie")
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .font(.system(size: 30, weight: .bold, design: .rounded))
+                    .minimumScaleFactor(0.7)
+                    .foregroundColor(.white)
+                    .padding(.leading, 15)
+                Spacer()
+                
+            }.padding([.top, .horizontal], 10).frame(height: 80)
             SearchBar(text: $searchVM.searchText)
                 .onChange(of: searchVM.searchText) { newValue in
                     Task {

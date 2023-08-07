@@ -71,11 +71,12 @@ public final class PipifyController: NSObject, ObservableObject, AVPictureInPict
         
         bufferLayer.frame.size = .init(width: 300, height: 100)
         bufferLayer.videoGravity = .resizeAspect
-        
-        pipController = AVPictureInPictureController(contentSource: .init(
-            sampleBufferDisplayLayer: bufferLayer,
-            playbackDelegate: self
-        ))
+        DispatchQueue.main.async {
+            self.pipController = AVPictureInPictureController(contentSource: .init(
+                sampleBufferDisplayLayer: self.bufferLayer,
+                playbackDelegate: self
+            ))
+        }
         
         // Combined with a certain time range this makes it so the skip buttons are not visible / interactable.
         // if an `onSkip` closure is provied then we don't do this

@@ -10,16 +10,19 @@ import StoreKit
 import KeychainAccess
 import SwiftUIBackports
 
-
-
 struct ContentView: View {
-    //    @State private var sideBar: SideMenu = SideMenu()
     @State private var isLoggingIn = false
     @State var selectedItem: Tab = Keychain(service: "dev.timmychoo.cinema")["accessKey"] == nil ? .signIn : .highlights
     @State var isSidebarVisible: Bool = false
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @GestureState private var dragOffset = CGSize.zero
-    
+    init() {
+//        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(named: "AccentColor")?.withAlphaComponent(0.75) ?? .clear]
+        UINavigationBar.appearance().isTranslucent = true
+        //Use this if NavigationBarTitle is with displayMode = .inline
+//        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(named: "AccentColor")?.withAlphaComponent(0.75) ?? .clear]
+
+    }
     var body: some View {
         NavigationView {
             ZStack {
@@ -35,28 +38,47 @@ struct ContentView: View {
                         .navigationTitle("Movies")
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationBarHidden(true)
+                        .layoutPriority(0.5)
                 case .search:
                     SearchMovieView()
                         .navigationTitle("Search")
-                        .navigationBarTitleDisplayMode(.inline)
+                        .layoutPriority(0.5)
+                        .navigationBarHidden(true)
+
+//                        .navigationBarHidden(isSidebarVisible ? true : false)
                 case .bookmarks:
                     BookmarksView()
+                    
                         .navigationTitle("Bookmarks")
-                        .navigationBarTitleDisplayMode(.inline)
+                        .layoutPriority(0.5)
+                        .navigationBarHidden(true)
+
+//                        .navigationBarHidden(isSidebarVisible ? true : false)
                 case .signIn:
                     LoginView(selectedItem: $selectedItem)
+                        .layoutPriority(0.5)
                         .navigationBarHidden(true)
+
+//                        .navigationBarHidden(isSidebarVisible ? true : false)
                 case .videos:
                     VideosView()
-                        .navigationTitle("Videos")
-                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationBarHidden(true)
+//                        .navigationBarHidden(/*isSidebarVisible ?*/ true : false)
+                        .layoutPriority(0.5)
+                    
+                case .arcinema:
+                    ARCinemaView()
+                        .navigationBarHidden(true)
+//                        .navigationBarHidden(/*isSidebarVisible ?*/ true : false)
+                        .layoutPriority(0.5)
                 }
                 
-                SideMenu(selectedItem: $selectedItem, isSidebarVisible: $isSidebarVisible)
+                SideMenu(selectedItem: $selectedItem, isSidebarVisible: $isSidebarVisible).layoutPriority(1.0)
                     .onChange(of: selectedItem) { newValue in
                         print(selectedItem)
                         isSidebarVisible.toggle()
                     }
+                
             }
             .gesture(DragGesture().updating($dragOffset, body: { (value, state, transaction) in
                 if(value.startLocation.x < 20 && value.translation.width > 100) {
@@ -121,7 +143,7 @@ struct ContentView: View {
                                     .frame(width: 20, height: 20)
                                     .padding(.trailing, 18)
                                 Text("Privacy Policy")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(Color(uiColor: UIColor.white))
                                     .font(.system(size: 16 , weight: .light, design: .rounded))
                             }
                         }
@@ -136,7 +158,7 @@ struct ContentView: View {
                                         .frame(width: 20, height: 20)
                                         .padding(.trailing, 18)
                                     Text("Share app")
-                                        .foregroundColor(.white)
+                                        .foregroundColor(Color(uiColor: UIColor.white))
                                         .font(.system(size: 16 , weight: .light, design: .rounded))
                                 }
                             })
@@ -156,7 +178,7 @@ struct ContentView: View {
                                     .frame(width: 20, height: 20)
                                     .padding(.trailing, 18)
                                 Text("Rate us")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(Color(uiColor: UIColor.white))
                                     .font(.system(size: 16 , weight: .light, design: .rounded))
                             }
                         }
@@ -166,7 +188,7 @@ struct ContentView: View {
                                 let keychain = Keychain(service: "dev.timmychoo.cinema")
                                 keychain["accessKey"] = nil
                                 keychain["userID"] = nil
-                                
+                                UserDefaults.standard.set(nil, forKey: "downloadedFiles")
                                 OperationQueue.main.addOperation {
                                     UIApplication.shared.keyWindow?.rootViewController = UIHostingController(rootView: LaunchView(isPresented: true))
                                 }
@@ -180,7 +202,7 @@ struct ContentView: View {
                                     .frame(width: 20, height: 20)
                                     .padding(.trailing, 18)
                                 Text("Log out")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(Color(uiColor: UIColor.white))
                                     .font(.system(size: 16 , weight: .light, design: .rounded))
                             }
                         }
@@ -200,7 +222,7 @@ struct ContentView: View {
                                     .font(.system(size: 16 , weight: .thin, design: .rounded))
                                 
                                 Text("Delete account")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(Color(uiColor: UIColor.white))
                                     .font(.system(size: 16 , weight: .thin, design: .rounded))
                             }
                         }.padding(.bottom, 40)
@@ -272,7 +294,7 @@ struct ContentView: View {
                     Image("ico").resizable().scaledToFit().frame(width: 50, height: 50, alignment: .center).cornerRadius(10)
                     VStack(alignment: .leading, spacing: 6) {
                         Text("Welcome to Bright Cinema!")
-                            .foregroundColor(.white)
+                            .foregroundColor(Color(uiColor: UIColor.white))
                             .bold()
                             .font(.system(size: 20, weight: .medium, design: .rounded))
                             .minimumScaleFactor(0.75)
@@ -298,11 +320,11 @@ struct ContentView: View {
                                 .renderingMode(.template)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 20, height: 20)
+                                .frame(width: 25, height: 25)
                                 .foregroundColor(Color("AccentColor"))
                                 .padding(.trailing, 18)
                             Text(item.text)
-                                .foregroundColor(.white)
+                                .foregroundColor(Color(uiColor: UIColor.white))
                                 .font(.system(size: 17 , weight: item.id == selectedItem ? .semibold : .light, design: .rounded))
                                 .opacity(item.id == selectedItem ? 1.0 : 0.7)
                             //                            .bold()
@@ -330,11 +352,11 @@ struct ContentView: View {
                     .renderingMode(.template)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 20, height: 20)
+                    .frame(width: 25, height: 25)
                     .foregroundColor(Color("AccentColor"))
                     .padding(.trailing, 18)
                 Text(text)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(uiColor: UIColor.white))
                     .font(.system(size: 16 , weight: .light, design: .rounded))
             }
         }

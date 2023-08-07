@@ -53,6 +53,15 @@
         "revision" : "3042f0cf4b9f0d5b0bb08ad17f742a43bc4fdfc5",
         "version" : "2.8.0"
       }
+    },
+    {
+      "identity" : "vidloader",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Cyklet/VidLoader.git",
+      "state" : {
+        "revision" : "80591c9568baf1d80f84b39d47f9980267bed5c5",
+        "version" : "1.2.0"
+      }
     }
   ],
   "version" : 2

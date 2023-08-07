@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "TV.png",
+      "filename" : "TV 3.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "TV@2x.png",
+      "filename" : "TV 2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "TV@3x.png",
+      "filename" : "TV 1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

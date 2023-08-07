@@ -31,3 +31,9 @@ struct ProgressBar: View {
         }
     }
 }
+
+extension Color {
+    static var white: Color {
+        return Color("Text")
+    }
+}
